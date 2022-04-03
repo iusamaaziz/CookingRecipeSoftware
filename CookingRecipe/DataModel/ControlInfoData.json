@@ -1,0 +1,46 @@
+﻿{
+  "Groups": [
+    {
+      "UniqueId": "Home",
+      "Title": "Home",
+      "Subtitle": "Get your recipes!",
+      "ImagePath": "",
+      "Description": "Here you can prepare your recipes by selecting a dish-country, number of guests and hot dish type.",
+      "Items": []
+    },
+    {
+      "UniqueId": "Accounts",
+      "Title": "Accounts",
+      "Subtitle": "",
+      "ImagePath": "",
+      "Description": "",
+      "Items": 
+      [
+        {
+          "UniqueId": "Login",
+          "Title": "Login",
+          "Subtitle": "A control that lets users pick a date value using a calendar.",
+          "ImagePath": "",
+          "Description": "A control that lets users pick a date value using a calendar.",
+          "Content": "<p>A <b>Border</b> can contain only one child object. If you want to put a border around multiple objects, first wrap them in a container object such as <b>StackPanel</b> and make the <b>StackPanel</b> the child of the <b>Border</b>.</p><p>You can change the appearance of a <b>Border</b> by setting basic properties:</p><ul><li>Width/Height</li><li>BorderBrush</li><li>BorderThickness</li><li>Background</li></ul><p></p><p>Most of the control pages in this app have XAML blocks to show basic usage. The appearance of the XAML blocks is defined by a Border control. Look at the <i>CodeBorderStyle</i> resource in App.xaml to see the <b>Style</b> that's applied to the Borders.</p><p>Look at the <i>BorderPage.xaml</i> file in Visual Studio to see the full code for this page.</p>",
+          "IsNew": false,
+          "Docs": [
+            {
+              "Title": "CalendarDatePicker - API",
+              "Uri": "https://docs.microsoft.com/uwp/api/windows.ui.xaml.controls.calendardatepicker"
+            },
+            {
+              "Title": "Guidelines",
+              "Uri": "https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/calendar-date-picker"
+            }
+          ],
+          "RelatedControls": [
+            "DatePicker",
+            "CalendarView"
+          ]
+        }
+
+      ]
+    }
+  ]
+}

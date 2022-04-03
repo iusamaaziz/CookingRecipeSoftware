@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Edden (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Edden (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

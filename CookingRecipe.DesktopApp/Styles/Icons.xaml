@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<BitmapImage x:Key="DashboardIcon" UriSource="/Icons/dashboard-icon.png" />
+	<BitmapImage x:Key="UserInfoBackground" UriSource="/Icons/user-info-background.png" />
+	<BitmapImage x:Key="ActivityHistoryIcon" UriSource="/Icons/activity-history-icon.png" />
+	<BitmapImage x:Key="AddKeyIcon" UriSource="/Icons/add-key-icon.png" />
+	<BitmapImage x:Key="BlacklistIcon" UriSource="/Icons/blacklist-icon.png" />
+	<BitmapImage x:Key="ChatIcon" UriSource="/Icons/chat-icon.png" />
+	<BitmapImage x:Key="InjectIcon" UriSource="/Icons/inject-icon.png" />
+	<BitmapImage x:Key="LogoutIcon" UriSource="/Icons/logout-icon.png" />
+	<BitmapImage x:Key="Playstation" UriSource="/Icons/playstation-bw.png" />
+	<BitmapImage x:Key="PlaystationIcon" UriSource="/Icons/playstation-icon.png" />
+	<BitmapImage x:Key="SettingsIcon" UriSource="/Icons/settings-icon.png" />
+	<BitmapImage x:Key="TransactionsIcon" UriSource="/Icons/transaction-icon.png" />
+	<BitmapImage x:Key="UserIcon" UriSource="/Icons/user-icon.png" />
+	<BitmapImage x:Key="ViewIcon" UriSource="/Icons/view-schedule-icon.png" />
+	<BitmapImage x:Key="Xbox" UriSource="/Icons/xbox-icon.png" />
+	<BitmapImage x:Key="XboxIcon" UriSource="/Icons/xbox-icon.png" />
+	<BitmapImage x:Key="RoundUnrealScriptsLogo" UriSource="/Icons/round-logo.png" />
+	<BitmapImage x:Key="FlatUnrealScriptsLogo" UriSource="/Icons/title-logo.png" />
+	<BitmapImage x:Key="ManageUsersIcon" UriSource="/Icons/manage-users-icon.png" />
+	<BitmapImage x:Key="LagAlPisoIcon" UriSource="/Icons/lagalpiso-icon.png" />
+	<BitmapImage x:Key="Connected" UriSource="/Icons/connected-icon.png" />
+	<BitmapImage x:Key="Disconnected" UriSource="/Icons/disconnected-icon.png" />
+	<BitmapImage x:Key="RegenerateIcon" UriSource="/Icons/refresh-icon.png" />
+	<BitmapImage x:Key="BrowseFileIcon" UriSource="/Icons/browse-file.png" />
+	<BitmapImage x:Key="DustbinIcon" UriSource="/Icons/dustbin-icon.png" />
+	<BitmapImage x:Key="CartIcon" UriSource="/Icons/cart-icon.png" />
+	<BitmapImage x:Key="InstagramIcon" UriSource="/Icons/instagram-icon.png" />
+	<BitmapImage x:Key="VerifiedIcon" UriSource="/Icons/verified-icon.png" />
+	<BitmapImage x:Key="Rdr2Icon" UriSource="/Icons/rdr2.png" />
+	<BitmapImage x:Key="InstagramColoredIcon" UriSource="/Icons/instagram-colored-icon.png" />
+	<BitmapImage x:Key="TwitterIcon" UriSource="/Icons/twitter-icon.png" />
+	<BitmapImage x:Key="YoutubeIcon" UriSource="/Icons/youtube-icon.png" />
+	<BitmapImage x:Key="LogIcon" UriSource="/Icons/log-icon.png" />
+	<BitmapImage x:Key="InstructionTemplateIcon" UriSource="/Icons/InstructionTemplateIcon.jpg"/>
+	<BitmapImage x:Key="PurpleFlamesBackground" UriSource="/Icons/PurpleFlames.png"/>
+
+</ResourceDictionary>

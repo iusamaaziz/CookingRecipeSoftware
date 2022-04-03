@@ -1,0 +1,119 @@
+﻿<Page
+    x:Class="CookingRecipe.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
+
+	<Grid>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition />
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup>
+				<VisualState x:Name="WideLayout">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="641" />
+					</VisualState.StateTriggers>
+				</VisualState>
+				<VisualState x:Name="NarrowLayout">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="0" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="contentSV.Padding" Value="14,0" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+		<ScrollViewer
+            x:Name="contentSV"
+            Grid.Row="1"
+            Padding="56,0,0,0"
+            IsTabStop="False"
+            UseSystemFocusVisuals="False"
+            VerticalScrollBarVisibility="Auto"
+            VerticalScrollMode="Auto">
+			<StackPanel HorizontalAlignment="Left">
+				<!--Theme Mode-->
+				<TextBlock
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    Margin="0,12,0,0"
+                    Text="Theme Mode" />
+				<StackPanel x:Name="ThemePanel" Margin="0,10,0,0">
+					<RadioButton Tag="Light" Checked="OnThemeRadioButtonChecked" Content="Light" KeyDown="OnThemeRadioButtonKeyDown" />
+					<RadioButton Tag="Dark" Checked="OnThemeRadioButtonChecked" Content="Dark" />
+					<RadioButton Tag="Default" Checked="OnThemeRadioButtonChecked" Content="Use system setting" />
+				</StackPanel>
+				<!--Sound-->
+				<TextBlock
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    Margin="0,40,0,0"
+                    Text="Sound" />
+				<StackPanel Margin="0,10,0,0">
+					<ToggleSwitch x:Name="soundToggle" Header="Controls provide audible feedback" Toggled="soundToggle_Toggled" OffContent="Off" OnContent="On" Margin="0,0,0,4"/>
+					<CheckBox x:Name="spatialSoundBox" Unchecked="spatialSoundBox_Unchecked" Checked="spatialSoundBox_Checked" IsEnabled="False" Content="Spatial Audio"/>
+				</StackPanel>
+
+				<!--Navigation Location-->
+				<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,40,0,0" Text="Navigation Style" />
+				<muxc:RadioButtons x:Name="navigationLocation" Margin="0,10,0,0"
+                        Header="Navigation position" SelectionChanged="navigationLocation_SelectionChanged">
+					<RadioButton Content="Left"/>
+					<RadioButton Content="Top"/>
+				</muxc:RadioButtons>
+
+
+				<!--ScreenShot Mode-->
+				<!--<TextBlock
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    Margin="0,40,0,0"
+                    Text="Screenshots" />
+				<StackPanel Margin="0,10,0,0">
+					<ToggleSwitch x:Name="screenshotModeToggle" Header="Screenshot mode" Toggled="screenshotModeToggle_Toggled" OffContent="Off" OnContent="On" Margin="0,0,0,4"/>
+					<Button Content="Set screenshot folder" Click="FolderButton_Click" Margin="0,4,0,0"/>
+
+					<HyperlinkButton x:Name="screenshotFolderLink" Margin="0,4,0,0" Click="screenshotFolderLink_Click">
+						<TextBlock x:Name="screenshotFolderLinkContent" TextWrapping="Wrap"/>
+					</HyperlinkButton>
+				</StackPanel>-->
+
+				<TextBlock
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    Margin="0,40,0,0"
+                    Text="About" />
+				<RichTextBlock MaxWidth="840" Margin="0,10,0,0" IsTextSelectionEnabled="True">
+					<Paragraph>
+						This app is developed by
+						<Hyperlink NavigateUri="https://www.fiverr.com/your_developer9">Usama Aziz</Hyperlink>.
+					</Paragraph>
+					<Paragraph Margin="0,10,0,0">
+						Source code:
+						<Hyperlink NavigateUri="https://github.com/Usama-Aziz/CookingRecipeSoftware">GitHub</Hyperlink>
+					</Paragraph>
+				</RichTextBlock>
+
+				<TextBlock
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    Margin="0,40,0,0"
+                    Text="Found a bug?" />
+				<RichTextBlock MaxWidth="840" Margin="0,10,0,30" IsTextSelectionEnabled="True">
+					<Paragraph>
+						If you have found a bug within the application, please let the developer know about it on Fiverr:
+					</Paragraph>
+					<Paragraph Margin="0,10,0,10">
+						<Hyperlink NavigateUri="https://www.fiverr.com/your_developer9">Bug report on Fiverr</Hyperlink>
+					</Paragraph>
+					<Paragraph>
+						You can also report the bug via Email
+					</Paragraph>
+					<Paragraph Margin="0,10,0,10">
+						<Hyperlink NavigateUri="mailto:iusamaaziz@gmail.com" ToolTipService.ToolTip="iusamaaziz@gmail.com">Email developer</Hyperlink>
+					</Paragraph>
+
+				</RichTextBlock>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</Page>

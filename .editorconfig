@@ -1,0 +1,9 @@
+﻿[*.cs]
+
+# IDE0058: Expression value is never used
+dotnet_diagnostic.IDE0058.severity = suggestion
+csharp_style_prefer_null_check_over_type_check=true:suggestion
+
+[*.{cs,vb}]
+dotnet_diagnostic.CA1041.severity=silent
+dotnet_diagnostic.CA1837.severity=error
