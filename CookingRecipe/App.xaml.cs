@@ -171,68 +171,60 @@ namespace CookingRecipe
                 return;
             }
 
-            //Type targetPageType = typeof(NewControlsPage);
-            //string targetPageArguments = string.Empty;
+			Type targetPageType = typeof(HomePage);
+			string targetPageArguments = string.Empty;
 
-            //if (args.Kind == ActivationKind.Launch)
-            //{
-            //    targetPageArguments = ((LaunchActivatedEventArgs)args).Arguments;
-            //}
-            //else if (args.Kind == ActivationKind.Protocol)
-            //{
-            //    Match match;
+			if (args.Kind == ActivationKind.Launch)
+			{
+				targetPageArguments = ((LaunchActivatedEventArgs)args).Arguments;
+			}
+			else if (args.Kind == ActivationKind.Protocol)
+			{
+				Match match;
 
-            //    string targetId = string.Empty;
+				string targetId = string.Empty;
 
-            //    switch (((ProtocolActivatedEventArgs)args).Uri?.AbsoluteUri)
-            //    {
-            //        case string s when IsMatching(s, "(/*)category/(.*)"):
-            //            targetId = match.Groups[2]?.ToString();
-            //            if (targetId == "AllControls")
-            //            {
-            //                targetPageType = typeof(AllControlsPage);
-            //            }
-            //            else if (targetId == "NewControls")
-            //            {
-            //                targetPageType = typeof(NewControlsPage);
-            //            }
-            //            else if (ControlInfoDataSource.Instance.Groups.Any(g => g.UniqueId == targetId))
-            //            {
-            //                targetPageType = typeof(SectionPage);
-            //            }
-            //            break;
+				switch (((ProtocolActivatedEventArgs)args).Uri?.AbsoluteUri)
+				{
+					case string s when IsMatching(s, "(/*)category/(.*)"):
+						targetId = match.Groups[2]?.ToString();
+						if (targetId == "Home")
+						{
+							targetPageType = typeof(HomePage);
+						}
+						//else if (ControlInfoDataSource.Instance.Groups.Any(g => g.UniqueId == targetId))
+						//{
+						//	targetPageType = typeof(SectionPage);
+						//}
+						break;
 
-            //        case string s when IsMatching(s, "(/*)item/(.*)"):
-            //            targetId = match.Groups[2]?.ToString();
-            //            if (ControlInfoDataSource.Instance.Groups.Any(g => g.Items.Any(i => i.UniqueId == targetId)))
-            //            {
-            //                targetPageType = typeof(ItemPage);
-            //            }
-            //            break;
-            //    }
+					//case string s when IsMatching(s, "(/*)item/(.*)"):
+					//	targetId = match.Groups[2]?.ToString();
+					//	if (ControlInfoDataSource.Instance.Groups.Any(g => g.Items.Any(i => i.UniqueId == targetId)))
+					//	{
+					//		targetPageType = typeof(ItemPage);
+					//	}
+					//	break;
+				}
 
-            //    targetPageArguments = targetId;
+				targetPageArguments = targetId;
 
-            //    bool IsMatching(string parent, string expression)
-            //    {
-            //        match = Regex.Match(parent, expression);
-            //        return match.Success;
-            //    }
-            //}
+				bool IsMatching(string parent, string expression)
+				    {
+				        match = Regex.Match(parent, expression);
+				        return match.Success;
+				    }
+			}
 
-            //rootFrame.Navigate(targetPageType, targetPageArguments);
+			rootFrame.Navigate(targetPageType, targetPageArguments);
 
-            //if (targetPageType == typeof(NewControlsPage))
-            //{
-            //    ((Microsoft.UI.Xaml.Controls.NavigationViewItem)((NavigationRootPage)Window.Current.Content).NavigationView.MenuItems[0]).IsSelected = true;
-            //}
-            //else if (targetPageType == typeof(ItemPage))
-            //{
-            //    NavigationRootPage.Current.EnsureNavigationSelection(targetPageArguments);
-            //}
+			if (targetPageType == typeof(HomePage))
+			{
+				((Microsoft.UI.Xaml.Controls.NavigationViewItem)((NavigationRootPage)Window.Current.Content).NavigationView.MenuItems[0]).IsSelected = true;
+			}
 
-            // Ensure the current window is active
-            Window.Current.Activate();
+			// Ensure the current window is active
+			Window.Current.Activate();
         }
 
         private Frame GetRootFrame()

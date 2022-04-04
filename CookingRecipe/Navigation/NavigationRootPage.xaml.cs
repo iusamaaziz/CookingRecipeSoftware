@@ -314,7 +314,13 @@ namespace CookingRecipe.Navigation
 						rootFrame.Navigate(typeof(HomePage));
 					}
 				}
-
+                else if(selectedItem == _ingredientsMenuItem)
+				{
+                    if (rootFrame.CurrentSourcePageType != typeof(IngredientsPage))
+                    {
+                        rootFrame.Navigate(typeof(IngredientsPage));
+                    }
+                }
 
                 //else
                 //{

@@ -33,7 +33,9 @@ namespace CookingRecipe
 		{
 			base.OnNavigatedTo(e);
 
-            NavigationRootPage.Current.NavigationView.Header = "Home";
+            var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Microsoft.UI.Xaml.Controls.NavigationViewItem>().ElementAt(0);
+            menuItem.IsSelected = true;
+            NavigationRootPage.Current.NavigationView.Header = string.Empty;
         }
 
 		protected override bool GetIsNarrowLayoutState()

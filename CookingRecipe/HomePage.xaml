@@ -73,12 +73,12 @@
                             Source="Assets/MainPage_Banner.png"
                             Stretch="Uniform" />
 					</ParallaxView>
-					<Rectangle Height="60" VerticalAlignment="Bottom" Fill="{StaticResource HeroImageGradientBrush}"/>
+					<Rectangle Height="70" VerticalAlignment="Bottom" Fill="{StaticResource HeroImageGradientBrush}"/>
 					<TextBlock x:Name="smallHeaderText"
                                Foreground="{ThemeResource PageHeaderForegroundBrush}"
                                Visibility="Collapsed"
                                Text="All your Recipes"
-                               Margin="84,24,0,0" />
+                               Margin="84,44,0,0" />
 				</Grid>
 			</GridView.Header>
 		</GridView>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CookingRecipe.Navigation;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace CookingRecipe.Pages
+namespace CookingRecipe
 {
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
@@ -26,6 +28,27 @@ namespace CookingRecipe.Pages
 		public IngredientsPage()
 		{
 			this.InitializeComponent();
+		}
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+
+			NavigationRootPage.Current.NavigationView.Header = "Ingredients";
+		}
+	}
+
+	public class GroupInfoList : List<object>
+	{
+		public GroupInfoList(IEnumerable<object> items) : base(items) { }
+
+		public object Key { get; set; }
+
+		public string Title { get; set; }
+
+		public override string ToString()
+		{
+			return Title;
 		}
 	}
 }
