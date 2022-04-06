@@ -35,5 +35,8 @@ namespace Contoso.Repository.Rest
 
         public async Task DeleteAsync(Guid IngredientId) =>
             await _http.DeleteAsync("Ingredient", IngredientId);
+
+        public async Task<IEnumerable<Ingredient>> GetForRecipeAsync(Guid recipeId) =>
+            await _http.GetAsync<IEnumerable<Ingredient>>($"Ingredient/Recipe/{recipeId}");
     }
 }

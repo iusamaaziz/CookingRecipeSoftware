@@ -70,7 +70,7 @@ namespace CookingRecipe.Repository.Sql
 			}
 			catch (Exception e)
 			{
-
+                _ = e;
 				throw;
 			}
             return Ingredient;
@@ -85,5 +85,11 @@ namespace CookingRecipe.Repository.Sql
                 await _db.SaveChangesAsync();
             }
         }
+
+		public async Task<IEnumerable<Ingredient>> GetForRecipeAsync(Guid recipeId) =>
+            await _db.Ingredients
+                .Where(ing => ing.RecipeId == recipeId)
+                .AsNoTracking()
+                .ToListAsync();
     }
 }

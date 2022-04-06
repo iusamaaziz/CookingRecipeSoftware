@@ -27,6 +27,11 @@ namespace CookingRecipe.Repository
         Task<Ingredient> GetAsync(Guid id);
 
         /// <summary>
+        /// Returns all the given recipe's ingredients. 
+        /// </summary>
+        Task<IEnumerable<Ingredient>> GetForRecipeAsync(Guid recipeId);
+
+        /// <summary>
         /// Adds a new ingredient if the ingredient does not exist, updates the 
         /// existing ingredient otherwise.
         /// </summary>

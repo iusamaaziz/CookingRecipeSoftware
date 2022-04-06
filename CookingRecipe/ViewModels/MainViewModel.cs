@@ -21,6 +21,8 @@ namespace CookingRecipe
 
 		}
 
+		public RecipeListViewModel RecipeList { get; set; } = new RecipeListViewModel();
+
 		public IngredientListViewModel IngredientList { get; set; } = new IngredientListViewModel();
 
 	}

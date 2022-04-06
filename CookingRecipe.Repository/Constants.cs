@@ -13,7 +13,7 @@
         /// however, you cannot modify any data on the server or deploy your own updates. 
         /// To see the full functionality, deploy Contoso.Service using your own Azure account.
         /// </summary>
-        public const string ApiUrl = @"http://customers-orders-api-prod.azurewebsites.net/api/";
+        public const string ApiUrl = @"http://recipes-orders-api-prod.azurewebsites.net/api/";
 
         /// <summary>
         /// The Azure Active Directory (AAD) client id.

@@ -27,8 +27,8 @@ namespace Contoso.Repository.Rest
         public async Task<Recipe> GetAsync(Guid id) =>
             await _http.GetAsync<Recipe>($"Recipe/{id}");
 
-        public async Task<IEnumerable<Recipe>> GetForCustomerAsync(Guid customerId) =>
-            await _http.GetAsync<IEnumerable<Recipe>>($"Recipe/customer/{customerId}");
+        public async Task<IEnumerable<Recipe>> GetForRecipeAsync(Guid recipeId) =>
+            await _http.GetAsync<IEnumerable<Recipe>>($"Recipe/recipe/{recipeId}");
 
         public async Task<IEnumerable<Recipe>> GetAsync(string search) =>
             await _http.GetAsync<IEnumerable<Recipe>>($"Recipe/search?value={search}");
