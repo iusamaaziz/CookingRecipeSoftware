@@ -137,6 +137,9 @@
     <Compile Include="Common\ThemeHelper.cs" />
     <Compile Include="DataModel\ControlInfoDataSource.cs" />
     <Compile Include="DeviceFamilyTrigger.cs" />
+    <Compile Include="Dialogs\SaveChangesDialog.xaml.cs">
+      <DependentUpon>SaveChangesDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\NavigationHelper.cs" />
     <Compile Include="Helper\NavigationOrientationHelper.cs" />
     <Compile Include="Helper\ProtocolActivationClipboardHelper.cs" />
@@ -157,6 +160,12 @@
     <Compile Include="PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\IngredientListPage.xaml.cs">
+      <DependentUpon>IngredientListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IngredientPage.xaml.cs">
+      <DependentUpon>IngredientPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\IngredientsPage.xaml.cs">
       <DependentUpon>IngredientsPage.xaml</DependentUpon>
     </Compile>
@@ -171,9 +180,14 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConvertors\BooleanToValueConverter.cs" />
+    <Compile Include="ValueConvertors\Converters.cs" />
     <Compile Include="ValueConvertors\DoubleToThicknessConverter.cs" />
     <Compile Include="ValueConvertors\NullableBooleanToBooleanConverter.cs" />
     <Compile Include="ValueConvertors\NullToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\BindableBase.cs" />
+    <Compile Include="ViewModels\IngredientListViewModel.cs" />
+    <Compile Include="ViewModels\IngredientViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -181,21 +195,25 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\MainPage_Banner.png" />
-    <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\MainPage_Banner.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dialogs\SaveChangesDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +231,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\IngredientListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\IngredientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,8 +286,24 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Recipe.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="CookingRecipe_TemporaryKey.pfx" />
     <Content Include="DataModel\ControlInfoData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CookingRecipe.Core\CookingRecipe.Core.csproj">
+      <Project>{7E254B15-F559-4A9A-BBEF-98297CF8823F}</Project>
+      <Name>CookingRecipe.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CookingRecipe.Repository\CookingRecipe.Repository.csproj">
+      <Project>{44d47e4c-f419-426c-b7a2-ff9a9ebfe5ca}</Project>
+      <Name>CookingRecipe.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

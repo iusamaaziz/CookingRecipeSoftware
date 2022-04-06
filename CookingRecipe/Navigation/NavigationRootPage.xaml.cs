@@ -26,6 +26,7 @@ using Windows.UI.Xaml.Navigation;
 using CookingRecipe.Helper;
 using muxc = Microsoft.UI.Xaml.Controls;
 using CookingRecipe.DataModel;
+using CookingRecipe.Pages;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -44,11 +45,10 @@ namespace CookingRecipe.Navigation
         private RootFrameNavigationHelper _navHelper;
         private bool _isGamePadConnected;
         private bool _isKeyboardConnected;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _allControlsMenuItem;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _newControlsMenuItem;
         private Microsoft.UI.Xaml.Controls.NavigationViewItem _homeMenuItem;
         private Microsoft.UI.Xaml.Controls.NavigationViewItem _databaseMenuItem;
         private Microsoft.UI.Xaml.Controls.NavigationViewItem _ingredientsMenuItem;
+        private Microsoft.UI.Xaml.Controls.NavigationViewItem _ingredientListMenuItem;
         private Microsoft.UI.Xaml.Controls.NavigationViewItem _recipeMenuItem;
 
         public Microsoft.UI.Xaml.Controls.NavigationView NavigationView
@@ -138,7 +138,7 @@ namespace CookingRecipe.Navigation
 
         public bool CheckNewControlSelected()
         {
-            return _newControlsMenuItem.IsSelected;
+            return false;
         }
 
         public void EnsureNavigationSelection(string id)
@@ -206,6 +206,13 @@ namespace CookingRecipe.Navigation
                 Icon = GetIcon("")
             };
 
+            _ingredientListMenuItem = new muxc.NavigationViewItem
+            {
+                Content = "Ingredient List",
+                Tag = "IngredientList",
+                Icon = GetIcon("")
+            };
+
             _recipeMenuItem = new muxc.NavigationViewItem
             {
                 Content = "Recipes",
@@ -221,6 +228,7 @@ namespace CookingRecipe.Navigation
             };
 
             _databaseMenuItem.MenuItems.Add(_ingredientsMenuItem);
+            _databaseMenuItem.MenuItems.Add(_ingredientListMenuItem);
             _databaseMenuItem.MenuItems.Add(_recipeMenuItem);
 
             NavigationViewControl.MenuItems.Add(_homeMenuItem);
@@ -314,11 +322,18 @@ namespace CookingRecipe.Navigation
 						rootFrame.Navigate(typeof(HomePage));
 					}
 				}
+                else if(selectedItem == _ingredientListMenuItem)
+				{
+                    if (rootFrame.CurrentSourcePageType != typeof(IngredientListPage))
+                    {
+                        rootFrame.Navigate(typeof(IngredientListPage));
+                    }
+                }
                 else if(selectedItem == _ingredientsMenuItem)
 				{
-                    if (rootFrame.CurrentSourcePageType != typeof(IngredientsPage))
+                    if (rootFrame.CurrentSourcePageType != typeof(IngredientPage))
                     {
-                        rootFrame.Navigate(typeof(IngredientsPage));
+                        rootFrame.Navigate(typeof(IngredientPage));
                     }
                 }
 
@@ -345,13 +360,13 @@ namespace CookingRecipe.Navigation
             // Close any open teaching tips before navigation
             CloseTeachingTips();
 
-            if (e.SourcePageType == typeof(HomePage))
+            if (e.SourcePageType == typeof(SettingsPage))
             {
-                NavigationViewControl.AlwaysShowHeader = false;
+                NavigationViewControl.AlwaysShowHeader = true;
             }
             else
             {
-                NavigationViewControl.AlwaysShowHeader = true;
+                NavigationViewControl.AlwaysShowHeader = false;
             }
         }
         private void CloseTeachingTips()

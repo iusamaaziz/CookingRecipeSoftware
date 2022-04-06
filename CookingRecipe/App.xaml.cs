@@ -1,6 +1,12 @@
-﻿using CookingRecipe.Common;
+﻿using Contoso.Repository.Rest;
+using CookingRecipe.Repository.Sql;
+
+using CookingRecipe.Common;
 using CookingRecipe.DataModel;
 using CookingRecipe.Navigation;
+using CookingRecipe.Repository;
+
+using Microsoft.EntityFrameworkCore;
 
 using System;
 using System.Collections.Generic;
@@ -17,6 +23,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Storage;
 using Windows.System.Profile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -57,42 +64,24 @@ namespace CookingRecipe
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-			//Frame rootFrame = Window.Current.Content as Frame;
-
-			//// Do not repeat app initialization when the Window already has content,
-			//// just ensure that the window is active
-			//if (rootFrame == null)
-			//{
-			//	// Create a Frame to act as the navigation context and navigate to the first page
-			//	rootFrame = new Frame();
-
-			//	rootFrame.NavigationFailed += OnNavigationFailed;
-
-			//	if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-			//	{
-			//		//TODO: Load state from previously suspended application
-			//	}
-
-			//	// Place the frame in the current Window
-			//	Window.Current.Content = rootFrame;
-			//}
-
 			CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
-            await EnsureWindow(e);
+            // Load the database.
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(
+                "data_source", out object dataSource))
+            {
+                switch (dataSource.ToString())
+                {
+                    case "Rest": UseRest(); break;
+                    default: UseSqlite(); break;
+                }
+            }
+            else
+            {
+                UseSqlite();
+            }
 
-			//if (e.PrelaunchActivated == false)
-			//{
-			//	if (rootFrame.Content == null)
-			//	{
-			//		// When the navigation stack isn't restored navigate to the first page,
-			//		// configuring the new page by passing required information as a navigation
-			//		// parameter
-			//		rootFrame.Navigate(typeof(NavigationRootPage), e.Arguments);
-			//	}
-			//	// Ensure the current window is active
-			//	Window.Current.Activate();
-			//}
+            await EnsureWindow(e);
 		}
 
         /// <summary>
@@ -277,5 +266,35 @@ namespace CookingRecipe
             }
             return (TEnum)Enum.Parse(typeof(TEnum), text);
         }
-    }
+
+        /// <summary>
+        /// Gets the app-wide MainViewModel singleton instance.
+        /// </summary>
+        public static MainViewModel ViewModel { get; } = new MainViewModel();
+
+        /// <summary>
+        /// Pipeline for interacting with backend service or database.
+        /// </summary>
+        public static ICookingRecipeRepository Repository { get; private set; }
+
+        public static void UseSqlite()
+        {
+			string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Recipe.db";
+			string databasePath = ApplicationData.Current.LocalFolder.Path + @"\Recipe.db";
+			if (!File.Exists(databasePath))
+			{
+				File.Copy(demoDatabasePath, databasePath);
+			}
+			var dbOptions = new DbContextOptionsBuilder<CookingRecipeContext>().UseSqlite(
+				"Data Source=" + databasePath);
+			Repository = new SqlCookingRecipeRepository(dbOptions);
+		}
+
+		/// <summary>
+		/// Configures the app to use the REST data source. For convenience, a read-only source is provided. 
+		/// You can also deploy your own copy of the REST service locally or to Azure. See the README for details.
+		/// </summary>
+		public static void UseRest() =>
+			Repository = new RestCookingRecipeRepository("https://ingredients-orders-api-prod.azurewebsites.net/api/");
+	}
 }

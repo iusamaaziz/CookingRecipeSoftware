@@ -64,6 +64,7 @@
 				Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
 				<TextBlock Text="Add Ingredient"
+						   HorizontalAlignment="Center"
 						   FontSize="20"
 						   Margin="0 0 0 7"
 						   FontWeight="Medium"
@@ -71,15 +72,20 @@
 				<TextBox 
 					Header="Ingredient name:" PlaceholderText="Name" />
 
-				<TextBox 
-					Header="Units:" PlaceholderText="Units" />
+				<muxc:NumberBox x:Name="NumberBoxSpinButtonPlacementExample"
+					Header="Units:"
+					Value="1"
+					SpinButtonPlacementMode="Compact"
+					SmallChange="10"
+					LargeChange="100" />
 
 				<TextBox 
 					Header="Supplier:" PlaceholderText="Supplier" />
 
-				<Button Content="Add"
+				<Button Content="Save"
+						Style="{StaticResource AccentButtonStyle}"
 						Margin="0 5"
-						HorizontalAlignment="Stretch"/>
+						HorizontalAlignment="Center"/>
 
 			</StackPanel>
 			
