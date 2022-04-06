@@ -1,5 +1,8 @@
 ﻿using CookingRecipe.Core;
+
 using Microsoft.EntityFrameworkCore;
+
+using System.Collections.Generic;
 
 namespace CookingRecipe.Repository.Sql
 {
@@ -8,11 +11,25 @@ namespace CookingRecipe.Repository.Sql
     /// </summary>
     public class CookingRecipeContext : DbContext
     {
+		public CookingRecipeContext()
+		{
+
+		}
+
         /// <summary>
         /// Creates a new Recipe DbContext.
         /// </summary>
         public CookingRecipeContext(DbContextOptions<CookingRecipeContext> options) : base(options)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite(@"Data Source= D:\Code\Fiverr\CookingRecipeSoftware\CookingRecipe\Assets\Recipe.db");
+                //optionsBuilder.UseSqlServer(@"Server=.;Database=Unreal-DB;Trusted_Connection=True;");
+            }
         }
 
         /// <summary>

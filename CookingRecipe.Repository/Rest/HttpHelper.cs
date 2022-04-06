@@ -1,4 +1,5 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+
 using System;
 using System.Net.Http;
 using System.Text;
@@ -14,11 +15,11 @@ namespace CookingRecipe.Repository.Rest
         /// <summary>           
         /// The Base URL for the API.
         /// /// </summary>
-        private readonly string _baseUrl; 
+        private readonly string _baseUrl;
 
         public HttpHelper(string baseUrl)
         {
-            _baseUrl = baseUrl; 
+            _baseUrl = baseUrl;
         }
 
         /// <summary>

@@ -11,16 +11,16 @@ namespace CookingRecipe.Repository.Sql
     /// </summary>
     public class SqlCookingRecipeRepository : ICookingRecipeRepository
     {
-        private readonly DbContextOptions<CookingRecipeContext> _dbOptions; 
+        private readonly DbContextOptions<CookingRecipeContext> _dbOptions;
 
-        public SqlCookingRecipeRepository(DbContextOptionsBuilder<CookingRecipeContext> 
+        public SqlCookingRecipeRepository(DbContextOptionsBuilder<CookingRecipeContext>
             dbOptionsBuilder)
         {
             _dbOptions = dbOptionsBuilder.Options;
             using (var db = new CookingRecipeContext(_dbOptions))
             {
                 db.Database.EnsureCreated();
-                db.Database.Migrate();
+                //db.Database.Migrate();
             }
         }
 
@@ -30,8 +30,8 @@ namespace CookingRecipe.Repository.Sql
         public IPreparationRepository Preparations => new SqlPreparationRepository(
             new CookingRecipeContext(_dbOptions));
 
-		public IIngredientRepository Ingredients => new SqlIngredientRepository(
+        public IIngredientRepository Ingredients => new SqlIngredientRepository(
             new CookingRecipeContext(_dbOptions));
 
-	}
+    }
 }

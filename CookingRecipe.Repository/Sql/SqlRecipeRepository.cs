@@ -2,6 +2,7 @@
 using CookingRecipe.Repository;
 
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace CookingRecipe.Repository.Sql
     /// </summary>
     public class SqlRecipeRepository : IRecipeRepository
     {
-        private readonly CookingRecipeContext _db; 
+        private readonly CookingRecipeContext _db;
 
         public SqlRecipeRepository(CookingRecipeContext db) => _db = db;
 

@@ -1,4 +1,4 @@
-using CookingRecipe.Core;
+﻿using CookingRecipe.Core;
 using CookingRecipe.Repository;
 using CookingRecipe.Repository.Rest;
 
@@ -20,23 +20,23 @@ namespace Contoso.Repository.Rest
             _http = new HttpHelper(baseUrl);
         }
 
-		public Task DeleteAsync(Guid preparationId)
-		{
-			throw new NotImplementedException();
-		}
+        public Task DeleteAsync(Guid preparationId)
+        {
+            throw new NotImplementedException();
+        }
 
-		public async Task<IEnumerable<Preparation>> GetAsync() =>
-            await _http.GetAsync<IEnumerable<Preparation>>("Preparation"); 
+        public async Task<IEnumerable<Preparation>> GetAsync() =>
+            await _http.GetAsync<IEnumerable<Preparation>>("Preparation");
 
-        public async Task<Preparation> GetAsync(Guid id) => 
+        public async Task<Preparation> GetAsync(Guid id) =>
             await _http.GetAsync<Preparation>($"Preparation/{id}");
 
         public async Task<IEnumerable<Preparation>> GetAsync(string search) =>
             await _http.GetAsync<IEnumerable<Preparation>>($"Preparation/search?value={search}");
 
-		public Task<Preparation> UpsertAsync(Preparation preparation)
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public Task<Preparation> UpsertAsync(Preparation preparation)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

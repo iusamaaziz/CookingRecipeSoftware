@@ -20,6 +20,6 @@ namespace CookingRecipe.Repository
         /// <summary>
         /// Returns the preparations repository.
         /// </summary>
-        IPreparationRepository Preparations { get;  }
+        IPreparationRepository Preparations { get; }
     }
 }

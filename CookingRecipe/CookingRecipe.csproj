@@ -293,17 +293,17 @@
     <Content Include="DataModel\ControlInfoData.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="UserControls\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CookingRecipe.Core\CookingRecipe.Core.csproj">
-      <Project>{7E254B15-F559-4A9A-BBEF-98297CF8823F}</Project>
+      <Project>{d0a15ece-b2a2-4ce5-8d79-48e60ab11ef2}</Project>
       <Name>CookingRecipe.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\CookingRecipe.Repository\CookingRecipe.Repository.csproj">
-      <Project>{44d47e4c-f419-426c-b7a2-ff9a9ebfe5ca}</Project>
+      <Project>{80851dc0-68fc-4cce-9269-d5e8b3eaae07}</Project>
       <Name>CookingRecipe.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

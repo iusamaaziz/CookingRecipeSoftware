@@ -2,6 +2,7 @@
 using CookingRecipe.Repository;
 
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace CookingRecipe.Repository.Sql
     /// </summary>
     public class SqlIngredientRepository : IIngredientRepository
     {
-        private readonly CookingRecipeContext _db; 
+        private readonly CookingRecipeContext _db;
 
         public SqlIngredientRepository(CookingRecipeContext db)
         {
-            _db = db; 
+            _db = db;
         }
 
         public async Task<IEnumerable<Ingredient>> GetAsync()
