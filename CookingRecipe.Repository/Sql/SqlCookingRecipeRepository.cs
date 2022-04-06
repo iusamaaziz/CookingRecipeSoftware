@@ -20,7 +20,6 @@ namespace CookingRecipe.Repository.Sql
             using (var db = new CookingRecipeContext(_dbOptions))
             {
                 db.Database.EnsureCreated();
-                //db.Database.Migrate();
             }
         }
 

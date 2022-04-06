@@ -199,16 +199,9 @@ namespace CookingRecipe.Navigation
                 Icon = GetIcon("")
             };
 
-            _ingredientsMenuItem = new muxc.NavigationViewItem
-            {
-                Content = "Ingredients",
-                Tag = "Ingredients",
-                Icon = GetIcon("")
-            };
-
             _ingredientListMenuItem = new muxc.NavigationViewItem
             {
-                Content = "Ingredient List",
+                Content = "Ingredients",
                 Tag = "IngredientList",
                 Icon = GetIcon("")
             };
@@ -227,7 +220,6 @@ namespace CookingRecipe.Navigation
                 Icon = GetIcon("")
             };
 
-            _databaseMenuItem.MenuItems.Add(_ingredientsMenuItem);
             _databaseMenuItem.MenuItems.Add(_ingredientListMenuItem);
             _databaseMenuItem.MenuItems.Add(_recipeMenuItem);
 

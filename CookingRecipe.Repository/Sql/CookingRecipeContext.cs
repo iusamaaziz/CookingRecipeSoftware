@@ -25,12 +25,12 @@ namespace CookingRecipe.Repository.Sql
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlite(@"Data Source= D:\Code\Fiverr\CookingRecipeSoftware\CookingRecipe\Assets\Recipe.db");
-                //optionsBuilder.UseSqlServer(@"Server=.;Database=Unreal-DB;Trusted_Connection=True;");
-            }
-        }
+			if (!optionsBuilder.IsConfigured)
+			{
+				optionsBuilder.UseSqlite(@"Data Source= D:\Code\Fiverr\CookingRecipeSoftware\CookingRecipe\Assets\Recipe.db");
+				//optionsBuilder.UseSqlServer(@"Server=.;Database=Unreal-DB;Trusted_Connection=True;");
+			}
+		}
 
         /// <summary>
         /// Gets the Ingredients DbSet.

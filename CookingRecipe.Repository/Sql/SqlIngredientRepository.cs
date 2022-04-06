@@ -64,7 +64,15 @@ namespace CookingRecipe.Repository.Sql
             {
                 _db.Entry(current).CurrentValues.SetValues(Ingredient);
             }
-            await _db.SaveChangesAsync();
+			try
+			{
+				await _db.SaveChangesAsync();
+			}
+			catch (Exception e)
+			{
+
+				throw;
+			}
             return Ingredient;
         }
 

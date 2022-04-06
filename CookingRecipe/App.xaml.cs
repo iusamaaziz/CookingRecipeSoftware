@@ -279,7 +279,8 @@ namespace CookingRecipe
 
         public static void UseSqlite()
         {
-			string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Recipe.db";
+            //D:\Code\Fiverr\CookingRecipeSoftware\CookingRecipe\Assets\Recipe.db
+            string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Recipe.db";
 			string databasePath = ApplicationData.Current.LocalFolder.Path + @"\Recipe.db";
 			if (!File.Exists(databasePath))
 			{
