@@ -46,7 +46,7 @@ namespace CookingRecipe
         /// </summary>
         public string Name
         {
-            get => Model.Name;
+            get => IsNewRecipe && string.IsNullOrEmpty(Model.Name) ? "New Recipe" : Model.Name;
             set
             {
                 if (value != Model.Name)
@@ -91,6 +91,24 @@ namespace CookingRecipe
                     IsModified = true;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(Type));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the recipe's quantity.
+        /// </summary>
+        public double Quantity
+        {
+            get => Model.Quantity;
+            set
+            {
+                if (value != Model.Quantity)
+                {
+                    Model.Quantity = value;
+                    IsModified = true;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(Quantity));
                 }
             }
         }

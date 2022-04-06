@@ -10,13 +10,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-	NavigationCacheMode="Disabled"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	NavigationCacheMode="Disabled">
 
-	<RelativePanel>
+	<RelativePanel Padding="10">
 		<TextBlock
                 x:Name="PageTitle"
-                Style="{StaticResource TitleTextBlockStyle}"
+                Style="{StaticResource PageTitleTextBlockStyle}"
                 Text="{x:Bind ViewModel.Name, Mode=OneWay}" />
 
 		<CommandBar
@@ -76,7 +75,7 @@
 
 					<RelativePanel Margin="8,0,0,12">
 						<TextBox
-                                x:Name="Name"
+                                x:Name="IngredientName"
                                 MinWidth="120"
                                 Margin="0,8,16,8"
                                 Header="Name"
@@ -94,7 +93,7 @@
 							    InputScope="Number"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
                                 RelativePanel.AlignLeftWithPanel="True"
-                                RelativePanel.Below="Name"
+                                RelativePanel.Below="IngredientName"
                                 Text="{x:Bind ViewModel.Units, Mode=TwoWay}" />
 						<TextBox
                                 x:Name="Supplier"
@@ -104,7 +103,7 @@
                                 Margin="0,8,16,0"
                                 Header="Supplier"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
-                                RelativePanel.Below="Name"
+                                RelativePanel.Below="IngredientName"
                                 RelativePanel.RightOf="Units"
                                 Text="{x:Bind ViewModel.Supplier, Mode=TwoWay}" />
 					</RelativePanel>

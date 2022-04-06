@@ -18,12 +18,12 @@
 			<MenuFlyoutItem
                 Click="ViewDetails_Click"
                 Text="View details"
-                Icon="OpenFile">
+                Icon="View">
 			</MenuFlyoutItem>
 			<MenuFlyoutItem
-                Click="AddOrder_Click"
-                Text="Add order"
-                Icon="Shop">
+                Click="AddIngredient_Click"
+                Text="Add ingredient"
+                Icon="List">
 			</MenuFlyoutItem>
 		</MenuFlyout>
 	</Page.Resources>

@@ -47,9 +47,7 @@ namespace CookingRecipe.Navigation
         private bool _isKeyboardConnected;
         private Microsoft.UI.Xaml.Controls.NavigationViewItem _homeMenuItem;
         private Microsoft.UI.Xaml.Controls.NavigationViewItem _databaseMenuItem;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _ingredientsMenuItem;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _ingredientListMenuItem;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _recipeMenuItem;
+        private Microsoft.UI.Xaml.Controls.NavigationViewItem _recipeListMenuItem;
 
         public Microsoft.UI.Xaml.Controls.NavigationView NavigationView
         {
@@ -199,14 +197,7 @@ namespace CookingRecipe.Navigation
                 Icon = GetIcon("")
             };
 
-            _ingredientListMenuItem = new muxc.NavigationViewItem
-            {
-                Content = "Ingredients",
-                Tag = "IngredientList",
-                Icon = GetIcon("")
-            };
-
-            _recipeMenuItem = new muxc.NavigationViewItem
+            _recipeListMenuItem = new muxc.NavigationViewItem
             {
                 Content = "Recipes",
                 Tag = "Recipes",
@@ -220,8 +211,7 @@ namespace CookingRecipe.Navigation
                 Icon = GetIcon("")
             };
 
-            _databaseMenuItem.MenuItems.Add(_ingredientListMenuItem);
-            _databaseMenuItem.MenuItems.Add(_recipeMenuItem);
+            _databaseMenuItem.MenuItems.Add(_recipeListMenuItem);
 
             NavigationViewControl.MenuItems.Add(_homeMenuItem);
             NavigationViewControl.MenuItems.Add(_databaseMenuItem);
@@ -314,34 +304,28 @@ namespace CookingRecipe.Navigation
 						rootFrame.Navigate(typeof(HomePage));
 					}
 				}
-                else if(selectedItem == _ingredientListMenuItem)
-				{
-                    if (rootFrame.CurrentSourcePageType != typeof(IngredientListPage))
+                else if (selectedItem == _recipeListMenuItem)
+                {
+                    if (rootFrame.CurrentSourcePageType != typeof(RecipeListPage))
                     {
-                        rootFrame.Navigate(typeof(IngredientListPage));
-                    }
-                }
-                else if(selectedItem == _ingredientsMenuItem)
-				{
-                    if (rootFrame.CurrentSourcePageType != typeof(IngredientPage))
-                    {
-                        rootFrame.Navigate(typeof(IngredientPage));
+                        rootFrame.Navigate(typeof(RecipeListPage));
                     }
                 }
 
+
                 //else
                 //{
-    //            if (selectedItem.DataContext is ControlInfoDataGroup)
-    //            {
-    //                var itemId = ((ControlInfoDataGroup)selectedItem.DataContext).UniqueId;
-    //                rootFrame.Navigate(typeof(SectionPage), itemId);
-    //            }
-    //            else if (selectedItem.DataContext is ControlInfoDataItem)
-    //            {
-    //                var item = (ControlInfoDataItem)selectedItem.DataContext;
-				//	//UNDONE:Uncomment
-				//	rootFrame.Navigate(typeof(ItemPage), item.UniqueId);
-				//}
+                //            if (selectedItem.DataContext is ControlInfoDataGroup)
+                //            {
+                //                var itemId = ((ControlInfoDataGroup)selectedItem.DataContext).UniqueId;
+                //                rootFrame.Navigate(typeof(SectionPage), itemId);
+                //            }
+                //            else if (selectedItem.DataContext is ControlInfoDataItem)
+                //            {
+                //                var item = (ControlInfoDataItem)selectedItem.DataContext;
+                //	//UNDONE:Uncomment
+                //	rootFrame.Navigate(typeof(ItemPage), item.UniqueId);
+                //}
 
                 //}
             }

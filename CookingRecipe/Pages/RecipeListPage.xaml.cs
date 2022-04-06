@@ -1,4 +1,6 @@
-﻿using Microsoft.Toolkit.Uwp;
+﻿using CookingRecipe.Navigation;
+
+using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
 using System;
@@ -160,6 +162,8 @@ namespace CookingRecipe.Pages
             {
                 await FilterRecipeList(RecipeSearchBox.AutoSuggestBox.Text);
             }
+
+            NavigationRootPage.Current.NavigationView.Header = string.Empty;
         }
 
         /// <summary>
@@ -174,9 +178,14 @@ namespace CookingRecipe.Pages
             }
         }
 
-        private void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e) =>
-            Frame.Navigate(typeof(RecipePage), ViewModel.SelectedRecipe.Model.Id,
+        private void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+		{
+            if(ViewModel.SelectedRecipe != null)
+			{
+                Frame.Navigate(typeof(RecipePage), ViewModel.SelectedRecipe.Model.Id,
                     new DrillInNavigationTransitionInfo());
+            }
+		}
 
         /// <summary>
         /// Navigates to a blank customer details page for the user to fill in.
@@ -209,8 +218,13 @@ namespace CookingRecipe.Pages
         /// <summary>
         /// Opens the order detail page for the user to create an order for the selected customer.
         /// </summary>
-        private void AddIngredient_Click(object sender, RoutedEventArgs e) =>
-            Frame.Navigate(typeof(RecipePage), ViewModel.SelectedRecipe.Model.Id);
-
+        private void AddIngredient_Click(object sender, RoutedEventArgs e)
+		{
+            if(ViewModel.SelectedRecipe != null)
+			{
+                Frame.Navigate(typeof(IngredientPage), ViewModel.SelectedRecipe.Model.Id);
+            }
+		}
+            
     }
 }

@@ -12,5 +12,14 @@ namespace CookingRecipe.Core
 		public string Supplier { get; set; }
 		public double Units { get; set; }
 		public Guid RecipeId { get; set; } = Guid.NewGuid();
+		public Recipe Recipe { get; set; }
+
+		public Ingredient()
+		{ }
+
+		public Ingredient(Recipe recipe) : this()
+		{
+			RecipeId = recipe.Id;
+		}
 	}
 }

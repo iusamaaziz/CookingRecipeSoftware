@@ -31,7 +31,6 @@ namespace CookingRecipe
                 if (_model != value)
                 {
                     _model = value;
-                    //RefreshChildObject();
 
                     // Raise the PropertyChanged event for all properties.
                     OnPropertyChanged(string.Empty);
@@ -44,7 +43,7 @@ namespace CookingRecipe
         /// </summary>
         public string Name
         {
-            get => Model.Name;
+            get => IsNewIngredient && string.IsNullOrEmpty(Model.Name) ? "New Ingredient" : Model.Name;
             set
             {
                 if (value != Model.Name)
