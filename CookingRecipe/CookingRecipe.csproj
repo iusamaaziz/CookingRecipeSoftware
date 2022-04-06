@@ -185,6 +185,9 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CollapsibleSearchBox.xaml.cs">
+      <DependentUpon>CollapsibleSearchBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValueConvertors\BooleanToValueConverter.cs" />
     <Compile Include="ValueConvertors\Converters.cs" />
     <Compile Include="ValueConvertors\DoubleToThicknessConverter.cs" />
@@ -274,6 +277,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\CollapsibleSearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -306,9 +313,7 @@
     <None Include="CookingRecipe_TemporaryKey.pfx" />
     <Content Include="DataModel\ControlInfoData.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CookingRecipe.Core\CookingRecipe.Core.csproj">
       <Project>{d0a15ece-b2a2-4ce5-8d79-48e60ab11ef2}</Project>
