@@ -12,9 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookingRecipe", "CookingRec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "Dummy\Dummy.csproj", "{91F4606D-B330-41C8-94B4-E809E6315A5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookingRecipe.Repository", "CookingRecipe.Repository\CookingRecipe.Repository.csproj", "{80851DC0-68FC-4CCE-9269-D5E8B3EAAE07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookingRecipe.Repository", "CookingRecipe.Repository\CookingRecipe.Repository.csproj", "{80851DC0-68FC-4CCE-9269-D5E8B3EAAE07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookingRecipe.Core", "CookingRecipe.Core\CookingRecipe.Core.csproj", "{D0A15ECE-B2A2-4CE5-8D79-48E60AB11EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookingRecipe.Core", "CookingRecipe.Core\CookingRecipe.Core.csproj", "{D0A15ECE-B2A2-4CE5-8D79-48E60AB11EF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eddens.App", "Eddens.App\Eddens.App.csproj", "{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,6 +122,36 @@ Global
 		{D0A15ECE-B2A2-4CE5-8D79-48E60AB11EF2}.Release|x64.Build.0 = Release|Any CPU
 		{D0A15ECE-B2A2-4CE5-8D79-48E60AB11EF2}.Release|x86.ActiveCfg = Release|Any CPU
 		{D0A15ECE-B2A2-4CE5-8D79-48E60AB11EF2}.Release|x86.Build.0 = Release|Any CPU
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|Any CPU.Build.0 = Debug|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|ARM.Build.0 = Debug|ARM
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|ARM.Deploy.0 = Debug|ARM
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|ARM64.Build.0 = Debug|ARM64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|x64.ActiveCfg = Debug|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|x64.Build.0 = Debug|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|x64.Deploy.0 = Debug|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|x86.ActiveCfg = Debug|x86
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|x86.Build.0 = Debug|x86
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Debug|x86.Deploy.0 = Debug|x86
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|Any CPU.ActiveCfg = Release|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|Any CPU.Build.0 = Release|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|Any CPU.Deploy.0 = Release|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|ARM.ActiveCfg = Release|ARM
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|ARM.Build.0 = Release|ARM
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|ARM.Deploy.0 = Release|ARM
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|ARM64.ActiveCfg = Release|ARM64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|ARM64.Build.0 = Release|ARM64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|ARM64.Deploy.0 = Release|ARM64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|x64.ActiveCfg = Release|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|x64.Build.0 = Release|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|x64.Deploy.0 = Release|x64
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|x86.ActiveCfg = Release|x86
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|x86.Build.0 = Release|x86
+		{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

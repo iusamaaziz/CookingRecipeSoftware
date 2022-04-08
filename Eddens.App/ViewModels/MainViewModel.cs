@@ -1,4 +1,4 @@
-﻿using CookingRecipe.ViewModels;
+﻿using Eddens.App.ViewModels;
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 using Windows.System;
 
-namespace CookingRecipe
+namespace Eddens.App
 {
 	public class MainViewModel : BindableBase
 	{

@@ -2,11 +2,8 @@
 using CookingRecipe.Dialogs;
 using CookingRecipe.Navigation;
 
-using Microsoft.Toolkit.Uwp.UI.Controls;
-
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -19,7 +16,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -29,9 +25,9 @@ namespace CookingRecipe.Pages
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class IngredientPage : Page
+	public sealed partial class PreparationPage : Page
 	{
-		public IngredientPage()
+		public PreparationPage()
 		{
 			this.InitializeComponent();
 		}
@@ -48,31 +44,31 @@ namespace CookingRecipe.Pages
 		/// </summary>
 		private void AddNewIngredientCanceled(object sender, EventArgs e) => Frame.GoBack();
 
-        /// <summary>
-        /// Displays the selected ingredient data.
-        /// </summary>
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var guid = (Guid)e.Parameter;
-            var recipe = App.ViewModel.RecipeList.Recipes.Where(r => r.Model.Id == guid).FirstOrDefault();
+		/// <summary>
+		/// Displays the selected ingredient data.
+		/// </summary>
+		protected override async void OnNavigatedTo(NavigationEventArgs e)
+		{
+			var guid = (Guid)e.Parameter;
+			var recipe = App.ViewModel.RecipeList.Recipes.Where(r => r.Model.Id == guid).FirstOrDefault();
 
-            if (recipe != null)
-            {
-                // Ingredient is a new ingredient
-                ViewModel = new IngredientViewModel(new Ingredient(recipe.Model)) { IsNewIngredient = true, IsInEdit = true };
-            }//guid is of ingredient
-            else
-            {
-                // Ingredient is an existing.
-                var ingredient = await App.Repository.Ingredients.GetAsync(guid);
-                ViewModel = new IngredientViewModel(ingredient);
-            }
+			if (recipe != null)
+			{
+				// Ingredient is a new ingredient
+				ViewModel = new IngredientViewModel(new Ingredient(recipe.Model)) { IsNewIngredient = true, IsInEdit = true };
+			}//guid is of ingredient
+			else
+			{
+				// Ingredient is an existing.
+				var ingredient = await App.Repository.Ingredients.GetAsync(guid);
+				ViewModel = new IngredientViewModel(ingredient);
+			}
 
 			ViewModel.AddNewIngredientCanceled += AddNewIngredientCanceled;
 			base.OnNavigatedTo(e);
 
-            NavigationRootPage.Current.NavigationView.Header = string.Empty;
-        }
+			NavigationRootPage.Current.NavigationView.Header = string.Empty;
+		}
 
 		/// <summary>
 		/// Check whether there are unsaved changes and warn the user.

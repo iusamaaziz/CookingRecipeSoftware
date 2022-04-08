@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{F7BF09C5-571E-4DDD-9609-DA93A4774B1E}</ProjectGuid>
+    <ProjectGuid>{D20BD5EC-6F0F-4547-A8E4-1BF1ABE721EA}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CookingRecipe</RootNamespace>
-    <AssemblyName>CookingRecipe</AssemblyName>
+    <RootNamespace>Eddens.App</RootNamespace>
+    <AssemblyName>Eddens.App</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -17,17 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>CB9095C74EF2DA5A84CBC1B1DC419BC82C85A40D</PackageCertificateThumbprint>
-    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-    <AppInstallerUri>D:\Eddens</AppInstallerUri>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -135,7 +125,6 @@
     <Compile Include="Common\MenuItemTemplateSelector.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Common\ThemeHelper.cs" />
-    <Compile Include="DataModel\ControlInfoDataSource.cs" />
     <Compile Include="DeviceFamilyTrigger.cs" />
     <Compile Include="Dialogs\SaveChangesDialog.xaml.cs">
       <DependentUpon>SaveChangesDialog.xaml</DependentUpon>
@@ -144,6 +133,9 @@
     <Compile Include="Helper\NavigationOrientationHelper.cs" />
     <Compile Include="Helper\ProtocolActivationClipboardHelper.cs" />
     <Compile Include="Helper\UIHelper.cs" />
+    <Compile Include="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
@@ -151,8 +143,8 @@
     <Compile Include="ItemTemplates.xaml.cs">
       <DependentUpon>ItemTemplates.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Navigation\NavigationRootPage.xaml.cs">
       <DependentUpon>NavigationRootPage.xaml</DependentUpon>
@@ -210,15 +202,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\MainPage_Banner.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -226,111 +218,81 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Dialogs\SaveChangesDialog.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemTemplates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Navigation\NavigationRootPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="ItemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ItemTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Navigation\NavigationRootPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PageHeader.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\IngredientListPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\IngredientPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\IngredientsPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\LoginPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\PreparationPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\RecipeListPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\RecipePage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SectionPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SettingsPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\CollapsibleSearchBox.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.12</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
-      <Version>7.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors">
-      <Version>7.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>7.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.Media">
-      <Version>7.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Media">
-      <Version>7.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.7.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
-      <Version>2.0.1</Version>
+      <Version>6.2.13</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Recipe.db" />
-    <None Include="CookingRecipe_TemporaryKey.pfx" />
-    <Content Include="DataModel\ControlInfoData.json" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\CookingRecipe.Core\CookingRecipe.Core.csproj">
-      <Project>{d0a15ece-b2a2-4ce5-8d79-48e60ab11ef2}</Project>
-      <Name>CookingRecipe.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CookingRecipe.Repository\CookingRecipe.Repository.csproj">
-      <Project>{80851dc0-68fc-4cce-9269-d5e8b3eaae07}</Project>
-      <Name>CookingRecipe.Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

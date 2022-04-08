@@ -1,6 +1,6 @@
 ﻿using CookingRecipe.Core;
-using CookingRecipe.Dialogs;
-using CookingRecipe.Navigation;
+using Eddens.App.Dialogs;
+using Eddens.App.Navigation;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
@@ -24,7 +24,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace CookingRecipe.Pages
+namespace Eddens.App.Pages
 {
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
