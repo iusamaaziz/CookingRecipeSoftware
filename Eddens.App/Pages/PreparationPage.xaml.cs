@@ -1,9 +1,11 @@
 ﻿using CookingRecipe.Core;
 using Eddens.App.Dialogs;
 using Eddens.App.Navigation;
+using Eddens.App.ViewModels;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,7 +27,7 @@ namespace Eddens.App.Pages
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class PreparationPage : Page
+	public sealed partial class PreparationPage : Page, INotifyPropertyChanged
 	{
 		public PreparationPage()
 		{
@@ -35,14 +37,14 @@ namespace Eddens.App.Pages
 		/// <summary>
 		/// Used to bind the UI to the data.
 		/// </summary>
-		public IngredientViewModel ViewModel { get; set; }
+		public PreparationViewModel ViewModel { get; set; }
 
-		//public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
 		/// Navigate to the previous page when the user cancels the creation of a new ingredient record.
 		/// </summary>
-		private void AddNewIngredientCanceled(object sender, EventArgs e) => Frame.GoBack();
+		private void AddNewPreparationCanceled(object sender, EventArgs e) => Frame.GoBack();
 
 		/// <summary>
 		/// Displays the selected ingredient data.
@@ -55,16 +57,16 @@ namespace Eddens.App.Pages
 			if (recipe != null)
 			{
 				// Ingredient is a new ingredient
-				ViewModel = new IngredientViewModel(new Ingredient(recipe.Model)) { IsNewIngredient = true, IsInEdit = true };
-			}//guid is of ingredient
+				ViewModel = new PreparationViewModel(new Preparation(recipe.Model)) { IsNewPreparation = true, IsInEdit = true };
+			}
 			else
 			{
 				// Ingredient is an existing.
-				var ingredient = await App.Repository.Ingredients.GetAsync(guid);
-				ViewModel = new IngredientViewModel(ingredient);
+				var ingredient = await App.Repository.Preparations.GetAsync(guid);
+				ViewModel = new PreparationViewModel(ingredient);
 			}
 
-			ViewModel.AddNewIngredientCanceled += AddNewIngredientCanceled;
+			ViewModel.AddNewPreparationCanceled += AddNewPreparationCanceled;
 			base.OnNavigatedTo(e);
 
 			NavigationRootPage.Current.NavigationView.Header = string.Empty;
@@ -79,8 +81,8 @@ namespace Eddens.App.Pages
 			{
 				var saveDialog = new SaveChangesDialog()
 				{
-					Title = $"Save changes to Ingredient # {ViewModel.Name}?",
-					Content = $"Ingredient # {ViewModel.Name} " +
+					Title = $"Save changes to Instruction?",
+					Content = $"Instruction # {ViewModel.Instruction} " +
 						"has unsaved changes that will be lost. Do you want to save your changes?"
 				};
 
@@ -120,7 +122,7 @@ namespace Eddens.App.Pages
 		/// </summary>
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
-			ViewModel.AddNewIngredientCanceled -= AddNewIngredientCanceled;
+			ViewModel.AddNewPreparationCanceled -= AddNewPreparationCanceled;
 			base.OnNavigatedFrom(e);
 		}
 	}

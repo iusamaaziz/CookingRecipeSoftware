@@ -16,7 +16,7 @@
 		<TextBlock
                 x:Name="PageTitle"
                 Style="{StaticResource PageTitleTextBlockStyle}"
-                Text="{x:Bind ViewModel.Name, Mode=OneWay}" />
+                Text="Preparation step" />
 
 		<CommandBar
                 x:Name="MainCommandBar"
@@ -39,7 +39,7 @@
                     Click="{x:Bind ViewModel.StartEdit}"
                     Icon="Edit"
                     IsEnabled="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
-                    Visibility="{x:Bind vc:Converters.CollapsedIf(ViewModel.IsNewIngredient), Mode=OneWay}"
+                    Visibility="{x:Bind vc:Converters.CollapsedIf(ViewModel.IsNewPreparation), Mode=OneWay}"
                     Label="Edit" />
 		</CommandBar>
 
@@ -64,10 +64,10 @@
 					<muxc:Expander.Header>
 						<Grid>
 							<TextBlock 
-                                    Text="General"
+                                    Text="Details"
                                     Style="{ThemeResource SubtitleTextBlockStyle}"/>
 							<TextBlock
-                                    Text="{x:Bind ViewModel.Name, Mode=OneWay}" 
+                                    Text="{x:Bind ViewModel.Instruction, Mode=OneWay}" 
                                     Style="{StaticResource CaptionTextBlockStyle}"
                                     HorizontalAlignment="Right" VerticalAlignment="Center"/>
 						</Grid>
@@ -75,36 +75,47 @@
 
 					<RelativePanel Margin="8,0,0,12">
 						<TextBox
-                                x:Name="IngredientName"
+                                x:Name="Instruction"
                                 MinWidth="120"
                                 Margin="0,8,16,8"
-                                Header="Name"
+                                Header="Instruction"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
                                 RelativePanel.AlignLeftWithPanel="True"
-                                Text="{x:Bind ViewModel.Name, Mode=TwoWay}"
+                                Text="{x:Bind ViewModel.Instruction, Mode=TwoWay}"
                                 Visibility="{x:Bind ViewModel.IsInEdit, Mode=OneWay}" />
 
+						<TimePicker ClockIdentifier="24HourClock"
+									x:Name="Time"
+									Header="Time"
+									MinWidth="120"
+									Margin="0,8,16,0"
+									IsEnabled="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
+									MinuteIncrement="5"
+									RelativePanel.AlignLeftWithPanel="True"
+									RelativePanel.Below="Instruction"
+									/>
+
 						<TextBox
-                                x:Name="Units"
+                                x:Name="VideoUrl"
                                 Grid.Row="1"
                                 MinWidth="120"
                                 Margin="0,8,16,0"
-                                Header="Units"
-							    InputScope="Number"
+                                Header="Video link"
+							    InputScope="Url"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
                                 RelativePanel.AlignLeftWithPanel="True"
-                                RelativePanel.Below="IngredientName"
-                                Text="{x:Bind ViewModel.Units, Mode=TwoWay}" />
+                                RelativePanel.RightOf="Time"
+                                Text="{x:Bind ViewModel.VideoUrl, Mode=TwoWay}" />
 						<TextBox
-                                x:Name="Supplier"
+                                x:Name="Photo"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 MinWidth="132"
                                 Margin="0,8,16,0"
-                                Header="Supplier"
+                                Header="Photo"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
-                                RelativePanel.Below="IngredientName"
-                                RelativePanel.RightOf="Units"
+                                RelativePanel.Below="Instruction"
+                                RelativePanel.RightOf="Time"
                                 Text="{x:Bind ViewModel.Supplier, Mode=TwoWay}" />
 					</RelativePanel>
 
