@@ -125,6 +125,7 @@
     <Compile Include="Common\MenuItemTemplateSelector.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Common\ThemeHelper.cs" />
+    <Compile Include="DataModel\ControlInfoDataSource.cs" />
     <Compile Include="DeviceFamilyTrigger.cs" />
     <Compile Include="Dialogs\SaveChangesDialog.xaml.cs">
       <DependentUpon>SaveChangesDialog.xaml</DependentUpon>
@@ -184,8 +185,10 @@
       <DependentUpon>CollapsibleSearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConvertors\BooleanToValueConverter.cs" />
+    <Compile Include="ValueConvertors\BytesToImageValueConvertor.cs" />
     <Compile Include="ValueConvertors\Converters.cs" />
     <Compile Include="ValueConvertors\DoubleToThicknessConverter.cs" />
+    <Compile Include="ValueConvertors\LongToTimeValueConvertor.cs" />
     <Compile Include="ValueConvertors\NullableBooleanToBooleanConverter.cs" />
     <Compile Include="ValueConvertors\NullToVisibilityConverter.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
@@ -287,12 +290,46 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.Media">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Media">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Recipe.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CookingRecipe.Core\CookingRecipe.Core.csproj">
+      <Project>{d0a15ece-b2a2-4ce5-8d79-48e60ab11ef2}</Project>
+      <Name>CookingRecipe.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CookingRecipe.Repository\CookingRecipe.Repository.csproj">
+      <Project>{80851dc0-68fc-4cce-9269-d5e8b3eaae07}</Project>
+      <Name>CookingRecipe.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\ControlInfoData.json" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -38,5 +38,8 @@ namespace Contoso.Repository.Rest
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<Preparation>> GetForRecipeAsync(Guid recipeId) =>
+            throw new NotImplementedException();
     }
 }

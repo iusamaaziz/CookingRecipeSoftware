@@ -182,5 +182,8 @@ namespace Eddens.App.Pages
         /// </summary>
         private void AddIngredient_Click(object sender, RoutedEventArgs e) =>
             Frame.Navigate(typeof(IngredientPage), ViewModel.Model.Id);
+
+		private void AddPreparation_Click(object sender, RoutedEventArgs e) =>
+            Frame.Navigate(typeof(PreparationPage), ViewModel.Model.Id);
     }
 }

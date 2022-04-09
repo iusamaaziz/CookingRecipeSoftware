@@ -61,5 +61,11 @@ namespace CookingRecipe.Repository.Sql
                 await _db.SaveChangesAsync();
             }
         }
+
+		public async Task<IEnumerable<Preparation>> GetForRecipeAsync(Guid id) =>
+            await _db.Preparations
+                .Where(ing => ing.RecipeId == id)
+                .AsNoTracking()
+                .ToListAsync();
     }
 }

@@ -64,7 +64,7 @@ namespace Eddens.App.ViewModels
 			{
 				if (value != TimeSpan.FromTicks(Model.Time))
 				{
-					Model.Time = Time.Ticks;
+					Model.Time = value.Ticks;
 					IsModified = true;
 					OnPropertyChanged();
 					OnPropertyChanged(nameof(Time));

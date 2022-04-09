@@ -20,6 +20,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using toolkit = Microsoft.Toolkit.Uwp.UI.Controls;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Eddens.App.Pages
@@ -27,7 +29,7 @@ namespace Eddens.App.Pages
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class PreparationPage : Page, INotifyPropertyChanged
+	public sealed partial class PreparationPage : Page
 	{
 		public PreparationPage()
 		{
@@ -38,8 +40,6 @@ namespace Eddens.App.Pages
 		/// Used to bind the UI to the data.
 		/// </summary>
 		public PreparationViewModel ViewModel { get; set; }
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
 		/// Navigate to the previous page when the user cancels the creation of a new ingredient record.
@@ -124,6 +124,11 @@ namespace Eddens.App.Pages
 		{
 			ViewModel.AddNewPreparationCanceled -= AddNewPreparationCanceled;
 			base.OnNavigatedFrom(e);
+		}
+
+		private void BrowsePhotoButton_Click(object sender, RoutedEventArgs e)
+		{
+			Notification.Show(ViewModel.Time.ToString(), 4000);
 		}
 	}
 }

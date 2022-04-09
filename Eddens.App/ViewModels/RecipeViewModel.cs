@@ -33,7 +33,7 @@ namespace Eddens.App
                 if (_model != value)
                 {
                     _model = value;
-                    RefreshIngredients();
+                    RefreshIngredientsAndPreparations();
 
                     // Raise the PropertyChanged event for all properties.
                     OnPropertyChanged(string.Empty);
@@ -125,16 +125,31 @@ namespace Eddens.App
         /// Gets the collection of the recipe's Ingredients.
         /// </summary>
         public ObservableCollection<Ingredient> Ingredients { get; } = new ObservableCollection<Ingredient>();
+        /// <summary>
+        /// Gets the collection of the recipe's preparations.
+        /// </summary>
+        public ObservableCollection<Preparation> Preparations { get; } = new ObservableCollection<Preparation>();
 
         private Ingredient _selectedIngredient;
 
         /// <summary>
-        /// Gets or sets the currently selected order.
+        /// Gets or sets the currently selected preparation.
         /// </summary>
         public Ingredient SelectedIngredient
         {
             get => _selectedIngredient;
             set => Set(ref _selectedIngredient, value);
+        }
+
+        private Preparation _selectedPreparation;
+
+        /// <summary>
+        /// Gets or sets the currently selected preparation.
+        /// </summary>
+        public Preparation SelectedPreparation
+        {
+            get => _selectedPreparation;
+            set => Set(ref _selectedPreparation, value);
         }
 
         private bool _isLoading;
@@ -229,19 +244,19 @@ namespace Eddens.App
         /// </summary>
         public async Task RefreshRecipeAsync()
         {
-            RefreshIngredients();
+            RefreshIngredientsAndPreparations();
             Model = await App.Repository.Recipes.GetAsync(Model.Id);
         }
 
         /// <summary>
         /// Resets the recipe detail fields to the current values.
         /// </summary>
-        public void RefreshIngredients() => Task.Run(LoadIngredientsAsync);
+        public void RefreshIngredientsAndPreparations() => Task.Run(LoadIngredientsAndPreparationsAsync);
 
         /// <summary>
-        /// Loads the order data for the recipe.
+        /// Loads the data for the recipe.
         /// </summary>
-        public async Task LoadIngredientsAsync()
+        public async Task LoadIngredientsAndPreparationsAsync()
         {
             await dispatcherQueue.EnqueueAsync(() =>
             {
@@ -256,6 +271,19 @@ namespace Eddens.App
                 foreach (var order in ingredient)
                 {
                     Ingredients.Add(order);
+                }
+
+                IsLoading = false;
+            });
+
+            var preparation = await App.Repository.Preparations.GetForRecipeAsync(Model.Id);
+
+            await dispatcherQueue.EnqueueAsync(() =>
+            {
+                Preparations.Clear();
+                foreach (var prep in preparation)
+                {
+                    Preparations.Add(prep);
                 }
 
                 IsLoading = false;

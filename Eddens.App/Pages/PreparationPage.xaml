@@ -9,8 +9,7 @@
 	xmlns:vc="using:Eddens.App.ValueConvertors"
 	xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-	NavigationCacheMode="Disabled"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	NavigationCacheMode="Disabled">
 
 	<RelativePanel Padding="10">
 		<TextBlock
@@ -60,7 +59,7 @@
 					</Style>
 				</StackPanel.Resources>
 
-				<muxc:Expander x:Name="GeneralExpander">
+				<muxc:Expander x:Name="GeneralExpander" IsExpanded="True">
 					<muxc:Expander.Header>
 						<Grid>
 							<TextBlock 
@@ -73,54 +72,77 @@
 						</Grid>
 					</muxc:Expander.Header>
 
-					<RelativePanel Margin="8,0,0,12">
-						<TextBox
+					<RelativePanel x:Name="DetailsAndPicturePanel">
+						<RelativePanel 
+							RelativePanel.AlignLeftWithPanel="True"
+							Margin="8,0,0,12" 
+							x:Name="DetailsRelativePanel">
+							<TextBox
                                 x:Name="Instruction"
                                 MinWidth="120"
+								PlaceholderText="Type instruction here.."
                                 Margin="0,8,16,8"
                                 Header="Instruction"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
+								RelativePanel.AlignRightWithPanel="True"
                                 RelativePanel.AlignLeftWithPanel="True"
                                 Text="{x:Bind ViewModel.Instruction, Mode=TwoWay}"
                                 Visibility="{x:Bind ViewModel.IsInEdit, Mode=OneWay}" />
 
-						<TimePicker ClockIdentifier="24HourClock"
+							<TimePicker ClockIdentifier="24HourClock"
 									x:Name="Time"
+									Time="{x:Bind ViewModel.Time, Mode=TwoWay}"
+									SelectedTime="{x:Bind ViewModel.Time, Mode=TwoWay}"
 									Header="Time"
 									MinWidth="120"
 									Margin="0,8,16,0"
-									IsEnabled="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
 									MinuteIncrement="5"
 									RelativePanel.AlignLeftWithPanel="True"
 									RelativePanel.Below="Instruction"
 									/>
 
-						<TextBox
+							<TextBox
                                 x:Name="VideoUrl"
                                 Grid.Row="1"
                                 MinWidth="120"
                                 Margin="0,8,16,0"
                                 Header="Video link"
+								RelativePanel.AlignRightWithPanel="True"
+								RelativePanel.AlignVerticalCenterWith="Time"
 							    InputScope="Url"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
-                                RelativePanel.AlignLeftWithPanel="True"
                                 RelativePanel.RightOf="Time"
+							RelativePanel.Below="Instruction"
                                 Text="{x:Bind ViewModel.VideoUrl, Mode=TwoWay}" />
-						<TextBox
-                                x:Name="Photo"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                MinWidth="132"
-                                Margin="0,8,16,0"
-                                Header="Photo"
-                                IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
-                                RelativePanel.Below="Instruction"
-                                RelativePanel.RightOf="Time"
-                                Text="{x:Bind ViewModel.Supplier, Mode=TwoWay}" />
-					</RelativePanel>
 
+							<AppBarButton 
+							Label="Browse Image"
+							Click="BrowsePhotoButton_Click"
+							x:Name="BrowsePhotoButton"
+							Icon="OpenFile"
+							RelativePanel.Below="Time"
+							/>
+
+						</RelativePanel>
+
+						<RelativePanel 
+							RelativePanel.AlignRightWithPanel="True"
+							RelativePanel.RightOf="DetailsRelativePanel"
+							RelativePanel.AlignBottomWith="DetailsRelativePanel"
+							x:Name="PictureRelativePanel">
+
+							<Image 
+								MaxWidth="300"
+								Height="300"
+								MaxHeight="{Binding ElementName=DetailPanel, Path=ActualHeight}"
+								Source="/Assets/MainPage_Banner.png"/>
+
+						</RelativePanel>
+					</RelativePanel>
+					
 				</muxc:Expander>
 
+				<toolkit:InAppNotification x:Name="Notification"/>
 			</StackPanel>
 		</ScrollViewer>
 
@@ -141,15 +163,17 @@
 						<AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}" />
 					</VisualState.StateTriggers>
 					<VisualState.Setters>
-						<Setter Target="Supplier.(RelativePanel.AlignLeftWithPanel)" Value="True" />
-						<Setter Target="Supplier.(RelativePanel.Below)" Value="CompanyText" />
+						<Setter Target="VideoUrl.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+						<Setter Target="VideoUrl.(RelativePanel.Below)" Value="Time" />
+						<Setter Target="BrowsePhotoButton.(RelativePanel.Below)" Value="VideoUrl" />
+						<Setter Target="BrowsePhotoButton.(RelativePanel.Below)" Value="VideoUrl" />
 						<Setter Target="DetailPanel.Margin" Value="12,0,0,0" />
 						<Setter Target="MainCommandBar.DefaultLabelPosition" Value="Bottom"/>
 					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 			<VisualStateGroup>
-				<VisualState x:Name="NewIngredient">
+				<VisualState x:Name="NewPreparation">
 					<VisualState.Setters>
 						<Setter Target="GeneralExpander.IsExpanded" Value="True"/>
 					</VisualState.Setters>

@@ -49,10 +49,18 @@
                     Icon="Shop"
                     Label="Add ingredient"
                     Visibility="{x:Bind vm:Converters.CollapsedIf(ViewModel.IsNewRecipe), Mode=OneWay}"/>
+
 			<AppBarButton
-                    Click="{x:Bind ViewModel.RefreshIngredients}"
+                    Click="AddPreparation_Click"
+                    Icon="Add"
+                    Label="Preparatation"
+                    Visibility="{x:Bind vm:Converters.CollapsedIf(ViewModel.IsNewRecipe), Mode=OneWay}"/>
+
+			<AppBarButton
+                    Click="{x:Bind ViewModel.RefreshIngredientsAndPreparations}"
                     Icon="Refresh"
-                    Label="Refresh ingredients"
+                    Label="Refresh Details"
+				ToolTipService.ToolTip="Refresh ingredients and preparation steps"
                     Visibility="{x:Bind vm:Converters.CollapsedIf(ViewModel.IsNewRecipe), Mode=OneWay}"/>
 		</CommandBar>
 
@@ -139,28 +147,6 @@
 
 				</muxc:Expander>
 
-				<!--<muxc:Expander x:Name="AddressExpander">
-					<muxc:Expander.Header>
-						<Grid>
-							<TextBlock
-                                    Text="Addresses"
-                                    Style="{ThemeResource SubtitleTextBlockStyle}"/>
-							<TextBlock
-                                    Text="{x:Bind ViewModel.Address, Mode=OneWay}" 
-                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
-						</Grid>
-					</muxc:Expander.Header>
-
-					<TextBox
-                        x:Name="PrimaryAddress"
-                        Margin="8,8,0,12"
-                        Header="Primary address"
-                        IsReadOnly="{x:Bind vm:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
-                        Text="{x:Bind ViewModel.Address, Mode=TwoWay}" />
-
-				</muxc:Expander>-->
-
 				<muxc:Expander x:Name="IngredientsExpander"
                         IsExpanded="True">
 
@@ -204,6 +190,76 @@
                                     Header="Supplier"
                                     Binding="{Binding Supplier}"/>
 								
+							</toolkit:DataGrid.Columns>
+						</toolkit:DataGrid>
+
+						<muxc:ProgressBar
+                                Margin="0,48,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                IsIndeterminate="True"
+                                Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+
+					</Grid>
+				</muxc:Expander>
+
+				<muxc:Expander x:Name="PreparationsExpander"
+                        IsExpanded="True">
+
+					<muxc:Expander.Header>
+						<TextBlock
+                                Text="Preparations"
+                                Style="{ThemeResource SubtitleTextBlockStyle}"/>
+					</muxc:Expander.Header>
+
+					<Grid Margin="0,4,0,0">
+
+						<toolkit:DataGrid
+                                BorderThickness="0"
+                                CanUserReorderColumns="False"
+                                CanUserResizeColumns="False"
+                                GridLinesVisibility="None"
+                                IsReadOnly="True"
+							    HorizontalAlignment="Stretch"
+                                AutoGenerateColumns="False"
+                                ItemsSource="{x:Bind ViewModel.Preparations, Mode=OneWay}"
+                                SelectedItem="{x:Bind ViewModel.SelectedPreparation, Mode=TwoWay}">
+							<toolkit:DataGrid.Columns>
+								<toolkit:DataGridTemplateColumn
+                                        Header="Instruction"
+                                        Tag="Instruction">
+									<toolkit:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="models:Preparation">
+											<HyperlinkButton
+                                                    Content="{x:Bind Instruction}"
+                                                    Margin="12,0"
+                                                    Click="ViewIngredientButton_Click"/>
+										</DataTemplate>
+									</toolkit:DataGridTemplateColumn.CellTemplate>
+								</toolkit:DataGridTemplateColumn>
+
+								<toolkit:DataGridTemplateColumn
+                                        Header="Time"
+                                        Tag="Time">
+									<toolkit:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="models:Preparation">
+											<TimePicker 
+														ClockIdentifier="24HourClock"/>
+										</DataTemplate>
+									</toolkit:DataGridTemplateColumn.CellTemplate>
+								</toolkit:DataGridTemplateColumn>
+
+								<toolkit:DataGridTemplateColumn
+                                    Header="Photo"
+									Tag="Photo">
+									<toolkit:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="models:Preparation">
+											<Image />
+										</DataTemplate>
+									</toolkit:DataGridTemplateColumn.CellTemplate>
+								</toolkit:DataGridTemplateColumn>
+                                    
+
 							</toolkit:DataGrid.Columns>
 						</toolkit:DataGrid>
 

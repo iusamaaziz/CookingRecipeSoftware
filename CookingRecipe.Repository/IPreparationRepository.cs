@@ -31,5 +31,6 @@ namespace CookingRecipe.Repository
         /// Deletes a preparation.
         /// </summary>
         Task DeleteAsync(Guid preparationId);
-    }
+		Task<IEnumerable<Preparation>> GetForRecipeAsync(Guid id);
+	}
 }

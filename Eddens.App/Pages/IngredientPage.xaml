@@ -60,7 +60,7 @@
 					</Style>
 				</StackPanel.Resources>
 
-				<muxc:Expander x:Name="GeneralExpander">
+				<muxc:Expander x:Name="GeneralExpander" IsExpanded="True">
 					<muxc:Expander.Header>
 						<Grid>
 							<TextBlock 
