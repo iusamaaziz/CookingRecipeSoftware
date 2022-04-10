@@ -14,7 +14,7 @@
 	NavigationCacheMode="Disabled">
 
 	<Page.Resources>
-		<media:AttachedCardShadow x:Key="CommonShadow" BlurRadius="10" Offset="4,4"/>
+		<media:AttachedCardShadow x:Key="CommonShadow" Offset="2"/>
 	</Page.Resources>
 	
 	<RelativePanel Padding="10">
@@ -46,7 +46,28 @@
                     IsEnabled="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
                     Visibility="{x:Bind vc:Converters.CollapsedIf(ViewModel.IsNewPreparation), Mode=OneWay}"
                     Label="Edit" />
+			<AppBarSeparator Visibility="{x:Bind vc:Converters.CollapsedIf(ViewModel.IsInEdit), Mode=OneWay}"/>
+			<AppBarButton
+				Icon="Play"
+				x:Name="PlayButton"
+				Click="PlayButton_Click"
+                Label="Play">
+			</AppBarButton>
+
 		</CommandBar>
+
+		<muxc:TeachingTip x:Name="PlayVideoTeachingTip"
+			Title="Preparation video"
+			Subtitle="Practical example of this preparation step"
+			PreferredPlacement="Auto">
+			<muxc:TeachingTip.HeroContent>
+				<MediaPlayerElement
+					Source="ms-appx:///Assets/fishes.wmv"
+					AutoPlay="False"
+					AreTransportControlsEnabled="True"
+					Visibility="Visible"/>
+			</muxc:TeachingTip.HeroContent>
+		</muxc:TeachingTip>
 
 		<ScrollViewer
                 x:Name="DetailPanel"
@@ -86,17 +107,18 @@
                                 MinWidth="120"
 								PlaceholderText="Type instruction here.."
                                 Margin="0,8,16,8"
+								TextWrapping="Wrap"
                                 Header="Instruction"
                                 IsReadOnly="{x:Bind vc:Converters.Not(ViewModel.IsInEdit), Mode=OneWay}"
 								RelativePanel.AlignRightWithPanel="True"
                                 RelativePanel.AlignLeftWithPanel="True"
-                                Text="{x:Bind ViewModel.Instruction, Mode=TwoWay}"
-                                Visibility="{x:Bind ViewModel.IsInEdit, Mode=OneWay}" />
+                                Text="{x:Bind ViewModel.Instruction, Mode=TwoWay}"/>
 
 							<TimePicker ClockIdentifier="24HourClock"
 									x:Name="Time"
 									Time="{x:Bind ViewModel.Time, Mode=TwoWay}"
 									SelectedTime="{x:Bind ViewModel.Time, Mode=TwoWay}"
+									IsEnabled="{x:Bind ViewModel.IsInEdit, Mode=OneWay}"
 									Header="Time"
 									MinWidth="120"
 									Margin="0,8,16,0"
@@ -136,7 +158,6 @@
 							ui:Effects.Shadow="{StaticResource CommonShadow}"
 							RelativePanel.AlignRightWithPanel="True"
 							RelativePanel.RightOf="DetailsRelativePanel"
-							RelativePanel.AlignBottomWith="DetailsRelativePanel"
 							x:Name="PictureRelativePanel">
 							<toolkit:ImageEx 
 								HorizontalAlignment="Stretch"
@@ -147,18 +168,6 @@
 								MaxHeight="200"
 								Source="/Assets/Entrecote.jpg"/>
 
-						</Border>
-
-						<Border
-							Margin="0 15 0 0"
-							Padding="4"
-							ui:Effects.Shadow="{StaticResource CommonShadow}"
-							RelativePanel.AlignLeftWithPanel="True"
-							RelativePanel.Below="DetailsRelativePanel"
-							x:Name="VideoRelativePanel">
-							<MediaPlayerElement 
-								Source="/Assets/fishes.wmv"
-								AreTransportControlsEnabled="True"/>
 						</Border>
 					</RelativePanel>
 					
@@ -196,10 +205,6 @@
 						<Setter Target="BrowsePhotoButton.(RelativePanel.Below)" Value="VideoUrl" />
 						<Setter Target="DetailPanel.Margin" Value="12,0,0,0" />
 						<Setter Target="MainCommandBar.DefaultLabelPosition" Value="Bottom"/>
-						
-						<!--VideoPlayer-->
-						<Setter Target="VideoRelativePanel.(RelativePanel.Below)" Value="PictureRelativePanel"/>
-						<Setter Target="VideoRelativePanel.(RelativePanel.AlignBottomWithPanel)" Value="True"/>
 					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>

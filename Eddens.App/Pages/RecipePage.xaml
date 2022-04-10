@@ -25,7 +25,6 @@
                 HorizontalAlignment="Stretch"
                 Background="Transparent"
                 DefaultLabelPosition="Right"
-                RelativePanel.LeftOf="RecipeSearchBox"
                 RelativePanel.RightOf="PageTitle">
 			<AppBarButton
                     Click="{x:Bind ViewModel.SaveAsync}"
@@ -63,14 +62,6 @@
 				ToolTipService.ToolTip="Refresh ingredients and preparation steps"
                     Visibility="{x:Bind vm:Converters.CollapsedIf(ViewModel.IsNewRecipe), Mode=OneWay}"/>
 		</CommandBar>
-
-		<uc:CollapsibleSearchBox
-                x:Name="RecipeSearchBox"
-                Width="240"
-                Margin="12,8,12,0"
-                CollapseWidth="{StaticResource LargeWindowSnapPoint}"
-                Loaded="RecipeSearchBox_Loaded"
-                RelativePanel.AlignRightWithPanel="True" />
 
 		<ScrollViewer
                 x:Name="DetailPanel"
@@ -151,9 +142,15 @@
                         IsExpanded="True">
 
 					<muxc:Expander.Header>
-						<TextBlock
+						<Grid>
+							<TextBlock
                                 Text="Ingredients"
                                 Style="{ThemeResource SubtitleTextBlockStyle}"/>
+							<TextBlock
+                                    Text="{x:Bind ViewModel.Ingredients.Count, Mode=OneWay}" 
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
+						</Grid>
 					</muxc:Expander.Header>
 
 					<Grid Margin="0,4,0,0">
@@ -181,7 +178,7 @@
 										</DataTemplate>
 									</toolkit:DataGridTemplateColumn.CellTemplate>
 								</toolkit:DataGridTemplateColumn>
-								
+
 								<toolkit:DataGridTextColumn
                                     Header="Units"
                                     Binding="{Binding Units}"
@@ -189,7 +186,7 @@
 								<toolkit:DataGridTextColumn
                                     Header="Supplier"
                                     Binding="{Binding Supplier}"/>
-								
+
 							</toolkit:DataGrid.Columns>
 						</toolkit:DataGrid>
 
@@ -207,16 +204,27 @@
                         IsExpanded="True">
 
 					<muxc:Expander.Header>
-						<TextBlock
+						<Grid>
+							<TextBlock
                                 Text="Preparations"
                                 Style="{ThemeResource SubtitleTextBlockStyle}"/>
+							<TextBlock
+                                    Text="{x:Bind ViewModel.Preparations.Count, Mode=OneWay}" 
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
+						</Grid>
+						
 					</muxc:Expander.Header>
 
 					<Grid Margin="0,4,0,0">
 
+						<Grid.Resources>
+							<vm:LongToTimeValueConvertor x:Key="longToTimeValueConvertor"/>
+						</Grid.Resources>
+
 						<toolkit:DataGrid
                                 BorderThickness="0"
-                                CanUserReorderColumns="False"
+                                CanUserReorderColumns="True"
                                 CanUserResizeColumns="False"
                                 GridLinesVisibility="None"
                                 IsReadOnly="True"
@@ -225,17 +233,40 @@
                                 ItemsSource="{x:Bind ViewModel.Preparations, Mode=OneWay}"
                                 SelectedItem="{x:Bind ViewModel.SelectedPreparation, Mode=TwoWay}">
 							<toolkit:DataGrid.Columns>
+								
 								<toolkit:DataGridTemplateColumn
-                                        Header="Instruction"
-                                        Tag="Instruction">
+                                    Header="Play"
+									Tag="Play">
 									<toolkit:DataGridTemplateColumn.CellTemplate>
 										<DataTemplate x:DataType="models:Preparation">
-											<HyperlinkButton
-                                                    Content="{x:Bind Instruction}"
-                                                    Margin="12,0"
-                                                    Click="ViewIngredientButton_Click"/>
+											<AppBarButton 
+												Icon="Play" 
+												Click="PlayVideo_Click">
+											</AppBarButton>
 										</DataTemplate>
 									</toolkit:DataGridTemplateColumn.CellTemplate>
+								</toolkit:DataGridTemplateColumn>
+
+								<toolkit:DataGridTemplateColumn
+                                    Header="View"
+									Tag="View">
+									<toolkit:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="models:Preparation">
+											<AppBarButton Icon="View" Label="View" Click="ViewPreparation_Click"/>
+										</DataTemplate>
+									</toolkit:DataGridTemplateColumn.CellTemplate>
+								</toolkit:DataGridTemplateColumn>
+								
+								<toolkit:DataGridTemplateColumn
+									Header="Instruction"
+                                    Tag="Instruction">
+									<toolkit:DataGridTemplateColumn.CellTemplate>
+										<DataTemplate x:DataType="models:Preparation">
+											<TextBlock Text="{x:Bind Instruction}" Style="{ThemeResource BodyTextBlockStyle}"
+													   VerticalAlignment="Center" Padding="3 0"/>
+										</DataTemplate>
+									</toolkit:DataGridTemplateColumn.CellTemplate>
+
 								</toolkit:DataGridTemplateColumn>
 
 								<toolkit:DataGridTemplateColumn
@@ -244,21 +275,15 @@
 									<toolkit:DataGridTemplateColumn.CellTemplate>
 										<DataTemplate x:DataType="models:Preparation">
 											<TimePicker 
-														ClockIdentifier="24HourClock"/>
+												Time="{Binding Time, Converter={StaticResource longToTimeValueConvertor}}"
+												SelectedTime="{x:Bind Time, Converter={StaticResource longToTimeValueConvertor}}"
+												IsEnabled="False"
+												ClockIdentifier="24HourClock"/>
 										</DataTemplate>
 									</toolkit:DataGridTemplateColumn.CellTemplate>
 								</toolkit:DataGridTemplateColumn>
 
-								<toolkit:DataGridTemplateColumn
-                                    Header="Photo"
-									Tag="Photo">
-									<toolkit:DataGridTemplateColumn.CellTemplate>
-										<DataTemplate x:DataType="models:Preparation">
-											<Image />
-										</DataTemplate>
-									</toolkit:DataGridTemplateColumn.CellTemplate>
-								</toolkit:DataGridTemplateColumn>
-                                    
+
 
 							</toolkit:DataGrid.Columns>
 						</toolkit:DataGrid>
@@ -274,6 +299,18 @@
 				</muxc:Expander>
 			</StackPanel>
 		</ScrollViewer>
+
+		<muxc:TeachingTip x:Name="PlayVideoTeachingTip"
+			Title="Attached video"
+			PreferredPlacement="Auto">
+			<muxc:TeachingTip.HeroContent>
+				<MediaPlayerElement
+					Source="ms-appx:///Assets/fishes.wmv"
+					AutoPlay="False"
+					AreTransportControlsEnabled="True"
+					Visibility="Visible"/>
+			</muxc:TeachingTip.HeroContent>
+		</muxc:TeachingTip>
 
 		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup>

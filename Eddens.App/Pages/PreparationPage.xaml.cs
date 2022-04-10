@@ -130,5 +130,10 @@ namespace Eddens.App.Pages
 		{
 			Notification.Show(ViewModel.Time.ToString(), 4000);
 		}
+
+		private void PlayButton_Click(object sender, RoutedEventArgs e)
+		{
+			PlayVideoTeachingTip.IsOpen = true;
+		}
 	}
 }

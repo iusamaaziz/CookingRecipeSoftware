@@ -178,6 +178,13 @@ namespace Eddens.App.Pages
                 new DrillInNavigationTransitionInfo());
 
         /// <summary>
+        /// Navigates to the preparation page for the recipe.
+        /// </summary>
+        private void ViewPreparation_Click(object sender, RoutedEventArgs e) =>
+            Frame.Navigate(typeof(PreparationPage), ((sender as FrameworkElement).DataContext as Preparation).Id,
+                new DrillInNavigationTransitionInfo());
+
+        /// <summary>
         /// Adds a new ingredient for the recipe.
         /// </summary>
         private void AddIngredient_Click(object sender, RoutedEventArgs e) =>
@@ -185,5 +192,12 @@ namespace Eddens.App.Pages
 
 		private void AddPreparation_Click(object sender, RoutedEventArgs e) =>
             Frame.Navigate(typeof(PreparationPage), ViewModel.Model.Id);
+
+        private void PlayVideo_Click(object sender, RoutedEventArgs e)
+        {
+            PlayVideoTeachingTip.Subtitle = ((sender as FrameworkElement).DataContext as Preparation).Instruction;
+            PlayVideoTeachingTip.Title = $"Time: {TimeSpan.FromTicks(((sender as FrameworkElement).DataContext as Preparation).Time)}";
+            PlayVideoTeachingTip.IsOpen = true;
+        }
     }
 }
