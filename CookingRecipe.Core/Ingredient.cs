@@ -10,7 +10,7 @@ namespace CookingRecipe.Core
 	{
 		public string Name { get; set; }
 		public string Supplier { get; set; }
-		public double Units { get; set; }
+		public string Units { get; set; }
 		public Guid RecipeId { get; set; } = Guid.NewGuid();
 		public Recipe Recipe { get; set; }
 

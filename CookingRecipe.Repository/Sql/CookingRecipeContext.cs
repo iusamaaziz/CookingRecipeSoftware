@@ -27,7 +27,7 @@ namespace CookingRecipe.Repository.Sql
         {
 			if (!optionsBuilder.IsConfigured)
 			{
-				optionsBuilder.UseSqlite(@"Data Source= D:\Code\Fiverr\CookingRecipeSoftware\CookingRecipe\Assets\Recipe.db");
+				optionsBuilder.UseSqlite(@"Data Source= D:\Code\Fiverr\CookingRecipeSoftware\Eddens.App\Assets\Recipe.db");
 				//optionsBuilder.UseSqlServer(@"Server=.;Database=Unreal-DB;Trusted_Connection=True;");
 			}
 		}

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookingRecipe.Repository.Migrations
 {
     [DbContext(typeof(CookingRecipeContext))]
-    [Migration("20220406042734_init")]
+    [Migration("20220417123454_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,8 @@ namespace CookingRecipe.Repository.Migrations
                     b.Property<string>("Supplier")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Units")
-                        .HasColumnType("REAL");
+                    b.Property<string>("Units")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -58,8 +58,8 @@ namespace CookingRecipe.Repository.Migrations
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("BLOB");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("Time")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("VideoUrl")
                         .HasColumnType("TEXT");
@@ -96,7 +96,7 @@ namespace CookingRecipe.Repository.Migrations
 
             modelBuilder.Entity("CookingRecipe.Core.Ingredient", b =>
                 {
-                    b.HasOne("CookingRecipe.Core.Recipe", null)
+                    b.HasOne("CookingRecipe.Core.Recipe", "Recipe")
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -105,7 +105,7 @@ namespace CookingRecipe.Repository.Migrations
 
             modelBuilder.Entity("CookingRecipe.Core.Preparation", b =>
                 {
-                    b.HasOne("CookingRecipe.Core.Recipe", null)
+                    b.HasOne("CookingRecipe.Core.Recipe", "Recipe")
                         .WithMany("Preparations")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)

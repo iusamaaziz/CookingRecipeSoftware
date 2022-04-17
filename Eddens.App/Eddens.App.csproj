@@ -327,9 +327,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Recipe.db" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CookingRecipe.Core\CookingRecipe.Core.csproj">
       <Project>{d0a15ece-b2a2-4ce5-8d79-48e60ab11ef2}</Project>
       <Name>CookingRecipe.Core</Name>
@@ -343,6 +340,7 @@
     <Content Include="DataModel\ControlInfoData.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Recipe.db" />
     <None Include="Eddens.App_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

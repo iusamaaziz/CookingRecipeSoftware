@@ -29,7 +29,7 @@ namespace CookingRecipe.Repository.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Supplier = table.Column<string>(nullable: true),
-                    Units = table.Column<double>(nullable: false),
+                    Units = table.Column<string>(nullable: true),
                     RecipeId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -49,7 +49,7 @@ namespace CookingRecipe.Repository.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Instruction = table.Column<string>(nullable: true),
-                    Time = table.Column<DateTime>(nullable: false),
+                    Time = table.Column<long>(nullable: false),
                     Thumbnail = table.Column<byte[]>(nullable: true),
                     VideoUrl = table.Column<string>(nullable: true),
                     RecipeId = table.Column<Guid>(nullable: false)

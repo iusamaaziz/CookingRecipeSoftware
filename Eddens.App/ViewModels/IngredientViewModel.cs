@@ -75,9 +75,9 @@ namespace Eddens.App
         }
 
         /// <summary>
-        /// Gets or sets the Ingredient's supplier.
+        /// Gets or sets the Ingredient's Units.
         /// </summary>
-        public double Units
+        public string Units
         {
             get => Model.Units;
             set
