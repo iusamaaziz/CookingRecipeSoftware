@@ -8,8 +8,8 @@
 
   <Identity
     Name="51998458-ca3b-4e76-9489-359e5ca06dbc"
-    Publisher="CN=usama"
-    Version="1.0.0.0" />
+    Publisher="CN=Usama Aziz"
+    Version="2.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="51998458-ca3b-4e76-9489-359e5ca06dbc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

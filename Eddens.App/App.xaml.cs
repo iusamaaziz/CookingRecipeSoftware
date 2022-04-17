@@ -31,6 +31,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Eddens.App.Navigation;
 using Eddens.App.DataModel;
+using Eddens.App.Pages;
 
 namespace Eddens.App
 {
@@ -159,7 +160,7 @@ namespace Eddens.App
                 return;
             }
 
-            Type targetPageType = typeof(HomePage);
+            Type targetPageType = typeof(RecipeListPage);
             string targetPageArguments = string.Empty;
 
             if (args.Kind == ActivationKind.Launch)
@@ -180,6 +181,10 @@ namespace Eddens.App
                         {
                             targetPageType = typeof(HomePage);
                         }
+                        else if(targetId == "RecipeList")
+						{
+                            targetPageType = typeof(RecipeListPage);
+						}
                         //else if (ControlInfoDataSource.Instance.Groups.Any(g => g.UniqueId == targetId))
                         //{
                         //	targetPageType = typeof(SectionPage);
@@ -209,6 +214,10 @@ namespace Eddens.App
             if (targetPageType == typeof(HomePage))
             {
                 ((Microsoft.UI.Xaml.Controls.NavigationViewItem)((NavigationRootPage)Window.Current.Content).NavigationView.MenuItems[0]).IsSelected = true;
+            }
+            else if(targetPageType == typeof(RecipeListPage))
+			{
+                ((Microsoft.UI.Xaml.Controls.NavigationViewItem)((NavigationRootPage)Window.Current.Content).NavigationView.MenuItems[2]).IsSelected = true;
             }
 
             // Ensure the current window is active
