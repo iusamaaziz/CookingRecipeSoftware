@@ -30,6 +30,12 @@ namespace Eddens.App.ValueConvertors
             value ? Visibility.Collapsed : Visibility.Visible;
 
         /// <summary>
+        /// Returns Visibility.Expanded if the specified value is true; otherwise, returns Visibility.Collapsed.
+        /// </summary>
+        public static Visibility ExpandedIf(bool value) =>
+            value ? Visibility.Visible : Visibility.Collapsed;
+
+        /// <summary>
         /// Returns Visibility.Collapsed if the specified value is null; otherwise, returns Visibility.Visible.
         /// </summary>
         public static Visibility CollapsedIfNull(object value) =>
